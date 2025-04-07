@@ -72,4 +72,5 @@
 
 - [ ] BUG: During Dad Battle's dialogue, you can press SPACE and start lifting dumbbells
 - [ ] BUG: When the forced lifting section ends up and you're still lifting, you can't finish it and you eventually miss it
+- [ ] BUG: Ending a dialogue can randomly play one of the sounds previously played 
 - [ ] ENHANCEMENT: Improve dialogue portraits
