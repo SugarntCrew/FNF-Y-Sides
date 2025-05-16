@@ -120,6 +120,7 @@ class NewDialogueBox extends FlxSpriteGroup
 			}
 			spriteBackground.setPosition(dialogue.dialogues[0].background.position[0], dialogue.dialogues[0].background.position[1]);
 		}
+		spriteBackground.antialiasing = ClientPrefs.data.antialiasing;
 		backgroundGroup.add(spriteBackground);
 
 		behindGroup = new FlxSpriteGroup();
@@ -158,7 +159,7 @@ class NewDialogueBox extends FlxSpriteGroup
         if(dialogue.speechBackgroundSize[1] == '') {}
         else speechBackground.scale.y = dialogue.speechBackgroundSize[1];
 
-		speechBackground.antialiasing = true;
+		speechBackground.antialiasing = ClientPrefs.data.antialiasing;
 		speechBackground.updateHitbox();
 		add(speechBackground);
 
@@ -181,7 +182,7 @@ class NewDialogueBox extends FlxSpriteGroup
 		speechText.width = dialogue.dialogues[0].speechTextWidth;
 		speechText.borderColor = 0xFF666666;
 		speechText.shadowOffset.set(2, 2);
-		speechText.antialiasing = true;
+		speechText.antialiasing = ClientPrefs.data.antialiasing;
 		add(speechText);
 
 		speechContinueThing = new FlxSprite(speechBackground.x + speechBackground.width - 50, speechBackground.y + speechBackground.height - 25);
@@ -190,7 +191,7 @@ class NewDialogueBox extends FlxSpriteGroup
         else speechContinueThing.makeGraphic(40, 40, 0xFFFFFFFF);
 
 		speechContinueThing.scale.set(0, 0);
-		speechContinueThing.antialiasing = true;
+		speechContinueThing.antialiasing = ClientPrefs.data.antialiasing;
 		speechContinueThing.angle = 15;
 		speechContinueThing.setPosition(speechContinueThing.x + dialogue.speechContinueThingOffsets[0],
 			speechContinueThing.y + dialogue.speechContinueThingOffsets[1]);
@@ -259,6 +260,7 @@ class NewDialogueBox extends FlxSpriteGroup
 			{
 				finishedWholeDialogue = true;
 				speechBackground.destroy();
+				lights.destroy();
 				if (spriteBackground != null)
 					spriteBackground.destroy();
 				speechText.destroy();
@@ -403,6 +405,7 @@ class NewDialogueBox extends FlxSpriteGroup
 			character.animation.play(anims[0][0]);
 		}
 		character.setPosition(pos[0], pos[1]);
+		character.antialiasing = ClientPrefs.data.antialiasing;
 		if (dialogue.dialogues[0].currentCharacter.addBehind)
 			behindGroup.add(character);
 		else

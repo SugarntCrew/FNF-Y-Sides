@@ -494,6 +494,7 @@ class PlayState extends MusicBeatState
 		timeBar.screenCenter(X);
 		timeBar.alpha = 0;
 		timeBar.visible = showTime;
+		timeBar.antialiasing = ClientPrefs.data.antialiasing;
 		uiGroup.add(timeBar);
 
 		if(ClientPrefs.data.middleScroll)
@@ -519,6 +520,7 @@ class PlayState extends MusicBeatState
 		timeTxt.x = timeBar.x + 17;
 		timeTxt.y = timeBar.y + timeBar.height / 4 - 4;
 		timeTxt.visible = updateTime = showTime;
+		timeTxt.antialiasing = ClientPrefs.data.antialiasing;
 		if(ClientPrefs.data.downScroll) 
 		{
 			if(!ClientPrefs.data.middleScroll) timeBar.y = FlxG.height - timeBar.height - 25;
@@ -599,6 +601,7 @@ class PlayState extends MusicBeatState
 		scoreTxt.scrollFactor.set();
 		scoreTxt.borderSize = 1.25;
 		scoreTxt.visible = !ClientPrefs.data.hideHud;
+		scoreTxt.antialiasing = ClientPrefs.data.antialiasing;
 		uiGroup.add(scoreTxt);
 
 		spaceMechanicButton = new FlxSprite(boyfriend.x - 210, boyfriend.y - 100);
@@ -640,6 +643,7 @@ class PlayState extends MusicBeatState
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
+		botplayTxt.antialiasing = ClientPrefs.data.antialiasing;
 		uiGroup.add(botplayTxt);
 		if(ClientPrefs.data.downScroll)
 			botplayTxt.y = healthBar.y + 70;
@@ -649,6 +653,7 @@ class PlayState extends MusicBeatState
 		songCard.screenCenter(XY);
 		songCard.alpha = 0;
 		songCard.cameras = [camOther];
+		songCard.antialiasing = ClientPrefs.data.antialiasing;
 		add(songCard);
 
 		uiGroup.cameras = [camHUD];

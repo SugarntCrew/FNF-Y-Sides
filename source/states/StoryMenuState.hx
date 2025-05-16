@@ -102,6 +102,7 @@ class StoryMenuState extends MusicBeatState
 
 		weekCharacter = new FlxSprite();
 		weekCharacter.alpha = 0;
+		weekCharacter.antialiasing = ClientPrefs.data.antialiasing;
 		add(weekCharacter);
 
 		FlxTween.tween(weekCharacter, {alpha: 1}, 1, {ease: FlxEase.quartOut});
