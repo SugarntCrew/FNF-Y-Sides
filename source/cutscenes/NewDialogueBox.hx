@@ -82,6 +82,7 @@ class NewDialogueBox extends FlxSpriteGroup
 {
 	public var spriteBackground:FlxSprite;
 	public var speechBackground:FlxSprite;
+	private var lights:FlxSprite;
 	public var speechText:FlxTypeText;
 	public var speechContinueThing:FlxSprite;
 	public var dialogue:DialogueData;
@@ -160,6 +161,13 @@ class NewDialogueBox extends FlxSpriteGroup
 		speechBackground.antialiasing = true;
 		speechBackground.updateHitbox();
 		add(speechBackground);
+
+		lights = new FlxSprite(speechBackground.x + 15, speechBackground.y + 13);
+		lights.frames = Paths.getSparrowAtlas('dialogue/lighty');
+		lights.animation.addByPrefix('idle', 'lighty', 24, true);
+		lights.animation.play('idle');
+		lights.antialiasing = ClientPrefs.data.antialiasing;
+		add(lights);
 
 		speechText = new FlxTypeText(speechBackground.x + 15, speechBackground.y + 15, dialogue.dialogues[0].speechTextWidth, '', 24);
 		if (dialogue.speechTextFont == '')
