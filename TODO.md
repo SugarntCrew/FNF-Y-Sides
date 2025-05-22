@@ -66,7 +66,7 @@
 
 - [ ] Results screen
     - [ ] Ranking songs
-    - [ ] BUG: The rank displayed has some sort of delay to show the actual rank
+    - [x] BUG: The rank displayed has some sort of delay to show the actual rank
     - [ ] RECOMMENDATION: Polish the results screen, it feels very empty
 
 ## OTHER

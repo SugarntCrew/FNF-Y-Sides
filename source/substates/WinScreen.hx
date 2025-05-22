@@ -111,6 +111,41 @@ class WinScreen extends MusicBeatSubstate
 		ratingText.antialiasing = ClientPrefs.data.antialiasing;
         add(ratingText);
 
+        var rating = PlayState.instance.ratingPercent * 100;
+        var ratingName = '';
+        var bfAnimName = '';
+
+        if(rating >= 90)
+        {
+            bfAnimName = '90%';
+            ratingName = 'S';
+        }
+        else if(rating >= 75 && rating < 90)
+        {
+            bfAnimName = '75%';
+            ratingName = 'A';
+        }
+        else if(rating >= 65 && rating < 75)
+        {
+            bfAnimName = '65%';
+            ratingName = 'B';
+        }
+        else if(rating >= 55 && rating < 65)
+        {
+            bfAnimName = '55%';
+            ratingName = 'C';
+        }
+        else if(rating >= 40 && rating < 55)
+        {
+            bfAnimName = '0%';
+            ratingName = 'D';
+        }
+        else
+        {
+            bfAnimName = '0%';
+            ratingName = 'E';
+        }
+
         ranks = new FlxSprite(30, ratingText.y + ratingText.height + 150);
         ranks.frames = Paths.getSparrowAtlas('resultsScreen/rank-coso');
         ranks.animation.addByPrefix('S', 'S', 24);
@@ -119,6 +154,7 @@ class WinScreen extends MusicBeatSubstate
         ranks.animation.addByPrefix('C', 'C', 24);
         ranks.animation.addByPrefix('D', 'D', 24);
         ranks.animation.addByPrefix('E', 'E', 24);
+        ranks.animation.play(ratingName);
 		ranks.antialiasing = ClientPrefs.data.antialiasing;
         ranks.scale.set(1.1, 1.1);
         ranks.x = scoreChart.width / 2 - ranks.width / 2;
@@ -145,8 +181,6 @@ class WinScreen extends MusicBeatSubstate
         FlxTween.tween(ratingText, {alpha: 1}, 0.4);
         FlxTween.tween(ranks, {alpha: 1}, 0.4);
         FlxTween.tween(otherRanks, {alpha: 1}, 0.4);
-
-        var rating = PlayState.instance.ratingPercent * 100;
 
         switch(PlayState.instance.ratingFC)
         {
@@ -176,36 +210,8 @@ class WinScreen extends MusicBeatSubstate
                 boyfriend.alpha = 1;
                 ranks.alpha = 1;
 
-                if(rating >= 90)
-                {
-                    boyfriend.playAnim('90%');
-                    ranks.animation.play('S');
-                }
-                else if(rating >= 75 && rating < 90)
-                {
-                    boyfriend.playAnim('75%');
-                    ranks.animation.play('A');
-                }
-                else if(rating >= 65 && rating < 75)
-                {
-                    boyfriend.playAnim('65%');
-                    ranks.animation.play('B');
-                }
-                else if(rating >= 55 && rating < 65)
-                {
-                    boyfriend.playAnim('55%');
-                    ranks.animation.play('C');
-                }
-                else if(rating >= 40 && rating < 55)
-                {
-                    boyfriend.playAnim('0%');
-                    ranks.animation.play('D');
-                }
-                else
-                {
-                    boyfriend.playAnim('0%');
-                    ranks.animation.play('E');
-                }
+                boyfriend.playAnim(bfAnimName);
+                ranks.animation.play(ratingName);
             });
         });
 
