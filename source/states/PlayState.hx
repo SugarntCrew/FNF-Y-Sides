@@ -1290,6 +1290,11 @@ class PlayState extends MusicBeatState
 		scoreTxt.text = tempScore;
 	}
 
+	public static var isWeekSFC:Bool = false;
+	public static var isWeekGFC:Bool = false;
+	public static var isWeekFC:Bool = false;
+	public static var isWeekSDCB:Bool = false;
+
 	public dynamic function fullComboFunction()
 	{
 		var sicks:Int = ratingsData[0].hits;
@@ -1304,16 +1309,19 @@ class PlayState extends MusicBeatState
 			{
 				ratingFC = 'FC';
 				fcSprite.animation.play('fc');
+				isWeekFC = true;
 			}
 			else if (goods > 0) 
 			{
 				ratingFC = 'GFC';
 				fcSprite.animation.play('gfc');
+				isWeekGFC = true;
 			}
 			else if (sicks > 0) 
 			{
 				ratingFC = 'SFC';
 				fcSprite.animation.play('sfc');
+				isWeekSFC = true;
 			}
 		}
 		else {
@@ -1321,6 +1329,7 @@ class PlayState extends MusicBeatState
 			{
 				ratingFC = 'SDCB';
 				fcSprite.animation.play('nofc');
+				isWeekSDCB = true;
 			}
 			else ratingFC = 'Clear';
 		}
@@ -2267,6 +2276,11 @@ class PlayState extends MusicBeatState
 		#end
 
 		MusicBeatState.switchState(new ChartingState());
+
+    	PlayState.isWeekSFC = false;
+    	PlayState.isWeekGFC = false;
+    	PlayState.isWeekFC = false;
+    	PlayState.isWeekSDCB = false;
 	}
 
 	function openCharacterEditor()
@@ -2285,6 +2299,11 @@ class PlayState extends MusicBeatState
 
 		#if DISCORD_ALLOWED DiscordClient.resetClientID(); #end
 		MusicBeatState.switchState(new CharacterEditorState(SONG.player2));
+
+        PlayState.isWeekSFC = false;
+        PlayState.isWeekGFC = false;
+        PlayState.isWeekFC = false;
+        PlayState.isWeekSDCB = false;
 	}
 
 	public var isDead:Bool = false; //Don't mess with this on Lua!!!
@@ -2797,6 +2816,11 @@ class PlayState extends MusicBeatState
 					canResync = false;
 					LoadingState.prepareToSong();
 					LoadingState.loadAndSwitchState(new PlayState(), false, false);
+
+           			PlayState.isWeekSFC = false;
+           			PlayState.isWeekGFC = false;
+           			PlayState.isWeekFC = false;
+           			PlayState.isWeekSDCB = false;
 				}
 			}
 			else

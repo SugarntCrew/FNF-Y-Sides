@@ -182,12 +182,22 @@ class WinScreen extends MusicBeatSubstate
         FlxTween.tween(ranks, {alpha: 1}, 0.4);
         FlxTween.tween(otherRanks, {alpha: 1}, 0.4);
 
-        switch(PlayState.instance.ratingFC)
+        if(PlayState.isStoryMode)
         {
-            case 'SFC': otherRanks.animation.play('sfc');
-            case 'GFC': otherRanks.animation.play('gfc');
-            case 'FC': otherRanks.animation.play('fc');
-            default: otherRanks.animation.play('nofc');
+            if(PlayState.isWeekSFC) otherRanks.animation.play('sfc');
+            if(PlayState.isWeekGFC) otherRanks.animation.play('gfc');
+            if(PlayState.isWeekFC) otherRanks.animation.play('fc');
+            if(PlayState.isWeekSDCB) otherRanks.animation.play('nofc');
+        }
+        else
+        {
+            switch(PlayState.instance.ratingFC)
+            {
+                case 'SFC': otherRanks.animation.play('sfc');
+                case 'GFC': otherRanks.animation.play('gfc');
+                case 'FC': otherRanks.animation.play('fc');
+                default: otherRanks.animation.play('nofc');
+            }
         }
 
         new FlxTimer().start(0.5, function(tmr:FlxTimer)
@@ -226,6 +236,11 @@ class WinScreen extends MusicBeatSubstate
 
         if (controls.ACCEPT) 
         {
+            PlayState.isWeekSFC = false;
+            PlayState.isWeekGFC = false;
+            PlayState.isWeekFC = false;
+            PlayState.isWeekSDCB = false;
+
             FlxTween.tween(blackScreen, {alpha: 1}, 0.7, {onComplete: function(twn:FlxTween)
             {
                 close();

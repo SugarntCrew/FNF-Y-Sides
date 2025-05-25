@@ -67,6 +67,7 @@
 - [ ] Results screen
     - [ ] Ranking songs
     - [x] BUG: The rank displayed has some sort of delay to show the actual rank
+    - [x] BUG: If you get a FC in the last song but you missed in a previous song of the week, it counts as a Week FC
     - [ ] RECOMMENDATION: Polish the results screen, it feels very empty
 
 ## OTHER

@@ -349,6 +349,11 @@ class PauseSubState extends MusicBeatSubstate
 
 	public static function restartSong(noTrans:Bool = false)
 	{
+        PlayState.isWeekSFC = false;
+        PlayState.isWeekGFC = false;
+        PlayState.isWeekFC = false;
+        PlayState.isWeekSDCB = false;
+
 		PlayState.instance.paused = true; // For lua
 		FlxG.sound.music.volume = 0;
 		PlayState.instance.vocals.volume = 0;
