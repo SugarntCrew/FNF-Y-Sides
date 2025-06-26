@@ -99,4 +99,4 @@
 - [x] BUG: Options menu dialogues are bugged when you play some of them at the same time
 - [x] ENHANCEMENT: Dialogue speech box lights
 - [ ] ENHANCEMENT: Improve dialogue portraits
-- [ ] RECOMMENDATION: Needs more difficulty, new players ain't playing Y Sides first so we can add something to make it a bit harder (such as health drain)
+- [x] RECOMMENDATION: Needs more difficulty, new players ain't playing Y Sides first so we can add something to make it a bit harder (such as health drain)
