@@ -259,14 +259,13 @@ class NewDialogueBox extends FlxSpriteGroup
 			else
 			{
 				finishedWholeDialogue = true;
-				speechBackground.destroy();
-				lights.destroy();
-				if (spriteBackground != null)
-					spriteBackground.destroy();
-				speechText.destroy();
-				finishThing();
-				new FlxTimer().start(0.2, function(tmr:FlxTimer)
+				FlxTween.tween(speechBackground, {alpha: 0}, 0.75);
+				FlxTween.tween(lights, {alpha: 0}, 0.75);
+				FlxTween.tween(spriteBackground, {alpha: 0}, 0.75);
+				FlxTween.tween(speechText, {alpha: 0}, 0.75);
+				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
+					finishThing();
 					destroy();
 				});
 			}
