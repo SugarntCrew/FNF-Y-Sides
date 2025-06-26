@@ -226,6 +226,8 @@ class PlayState extends MusicBeatState
 	public var camOther:FlxCamera;
 	public var cameraSpeed:Float = 1;
 
+	public var healthBarArrow:FlxSprite;
+
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
 	public var songMisses:Int = 0;
@@ -595,6 +597,13 @@ class PlayState extends MusicBeatState
 		iconP2.visible = !ClientPrefs.data.hideHud;
 		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
 		uiGroup.add(iconP2);
+
+		healthBarArrow = new FlxSprite();
+		healthBarArrow.loadGraphic(Paths.image('hud/healthBar_arrow'));
+		healthBarArrow.antialiasing = ClientPrefs.data.antialiasing;
+		healthBarArrow.y = healthBar.y - healthBarArrow.height - 5;
+		//healthBarArrow.y = healthBar.y + 10;
+		uiGroup.add(healthBarArrow);
 
 		scoreTxt = new FlxText(0, healthBar.y + healthBar.height + 17, FlxG.width, "", 20);
 		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -2193,6 +2202,8 @@ class PlayState extends MusicBeatState
 		//iconP1.x = healthBar.barCenter + (150 * iconP1.scale.x - 150) / 2 - iconOffset;
 		//iconP2.x = healthBar.barCenter - (150 * iconP2.scale.x) / 2 - iconOffset * 2;
 
+		healthBarArrow.x = healthBar.barCenter - (healthBarArrow.width / 2);
+
 		iconP1.x = healthBar.x + healthBar.width - 25;
 		iconP2.x = healthBar.x - iconOffset - 105;
 	}
@@ -3329,6 +3340,8 @@ class PlayState extends MusicBeatState
 		vocals.volume = 0;
 	}
 
+	var healthDrain:Bool = true;
+
 	function opponentNoteHit(note:Note):Void
 	{
 		var result:Dynamic = callOnLuas('opponentNoteHitPre', [notes.members.indexOf(note), Math.abs(note.noteData), note.noteType, note.isSustainNote]);
@@ -3347,6 +3360,18 @@ class PlayState extends MusicBeatState
 			var char:Character = dad;
 			var animToPlay:String = singAnimations[Std.int(Math.abs(Math.min(singAnimations.length-1, note.noteData)))] + note.animSuffix;
 			if(note.gfNote) char = gf;
+
+			if(healthDrain)
+			{
+				switch(curSong)
+				{
+					case 'Tutorial': // do nothing
+					default:
+						var drainHealth:Bool = true; // prevent health drain, *if* sustains are treated as a singular note
+						if (guitarHeroSustains && note.isSustainNote) drainHealth = false;
+						if (drainHealth && health > 0.1) health -= 0.01;
+				}
+			}
 
 			if(char != null)
 			{
