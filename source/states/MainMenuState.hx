@@ -421,6 +421,11 @@ class MainMenuState extends MusicBeatState
 				MusicBeatState.switchState(new MasterEditorMenu());
 			}
 			#end
+
+			if(FlxG.keys.justPressed.ONE)
+			{
+				MusicBeatState.switchState(new GalleryState());
+			}
 		}
 
 		super.update(elapsed);
