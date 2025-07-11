@@ -1,0 +1,119 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [-5, 0],
+			"anim": "idle",
+			"fps": 24,
+			"name": "idle",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [55, -9],
+			"anim": "singLEFT",
+			"fps": 24,
+			"name": "left",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [1, -31],
+			"anim": "singDOWN",
+			"fps": 24,
+			"name": "down",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [9, 32],
+			"anim": "singUP",
+			"fps": 24,
+			"name": "up",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-59, -4],
+			"anim": "singRIGHT",
+			"fps": 24,
+			"name": "right",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [63, -15],
+			"anim": "singLEFTmiss",
+			"fps": 24,
+			"name": "mleft",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [29, -98],
+			"anim": "singDOWNmiss",
+			"fps": 24,
+			"name": "mdown",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [8, 37],
+			"anim": "singUPmiss",
+			"fps": 24,
+			"name": "mup",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-66, -5],
+			"anim": "singRIGHTmiss",
+			"fps": 24,
+			"name": "mright",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-14, 25],
+			"anim": "hey",
+			"fps": 24,
+			"name": "hey",
+			"indices": []
+		},
+		{
+			"loop": true,
+			"offsets": [7, -4],
+			"anim": "lift",
+			"fps": 24,
+			"name": "pesa instancia",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-4, 15],
+			"anim": "liftUp",
+			"fps": 24,
+			"name": "pesaF instancia",
+			"indices": []
+		},
+		{
+			"offsets": [11, -18],
+			"indices": [],
+			"fps": 24,
+			"anim": "liftFail",
+			"loop": false,
+			"name": "pesaM instancia"
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "characters/bf_HALLOWEEN",
+	"position": [0, 0],
+	"healthicon": "bf",
+	"flip_x": true,
+	"healthbar_colors": [255, 189, 36],
+	"camera_position": [100, 50],
+	"sing_duration": 4,
+	"scale": 1,
+	"_editor_isPlayer": true
+}

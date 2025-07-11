@@ -60,7 +60,7 @@
 
 - [ ] Girlfriend (NEW)
 - [ ] Girlfriend (SPOOKY VERSION)
-- [ ] Boyfriend (SPOOKY VERSION)
+- [x] Boyfriend (SPOOKY VERSION)
 - [ ] Spooky kids
 - [ ] Monster
 - [ ] Pico
