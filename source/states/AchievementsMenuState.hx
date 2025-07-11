@@ -46,7 +46,7 @@ class AchievementsMenuState extends MusicBeatState
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		var menuBG:FlxSprite = new FlxSprite().makeGraphic(1280, 720, 0xFFEEE4FF);
+		var menuBG:FlxSprite = new FlxSprite().makeGraphic(1280, 720, 0xFFBFB4F1);
 		menuBG.antialiasing = ClientPrefs.data.antialiasing;
 		menuBG.screenCenter();
 		menuBG.scrollFactor.set();

@@ -51,7 +51,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		DiscordClient.changePresence(rpcTitle, null);
 		#end
 		
-		bg = new FlxSprite().makeGraphic(1280, 720, 0xFFEEE4FF);
+		bg = new FlxSprite().makeGraphic(1280, 720, 0xFFBFB4F1);
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.updateHitbox();
 

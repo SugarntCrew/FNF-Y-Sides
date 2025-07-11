@@ -269,7 +269,7 @@ class TitleState extends MusicBeatState
 					if(titleJSON.dance_right != null && titleJSON.dance_right.length > 0) danceRightFrames = titleJSON.dance_right;
 					useIdle = (titleJSON.idle == true);
 
-					backgroundGraphic = new FlxSprite().makeGraphic(1280, 720, 0xFFEEE4FF);
+					backgroundGraphic = new FlxSprite().makeGraphic(1280, 720, 0xFFBFB4F1);
 					add(backgroundGraphic);
 	
 					if (titleJSON.backgroundSprite != null && titleJSON.backgroundSprite.trim().length > 0)

@@ -84,7 +84,7 @@ class StoryMenuState extends MusicBeatState
 		if(curWeek >= WeekData.weeksList.length) curWeek = 0;
 
 		bg = new FlxSprite();
-		bg.makeGraphic(1280, 720, 0xFFEEE4FF);
+		bg.makeGraphic(1280, 720, 0xFFBFB4F1);
 		add(bg);
 
 		weekBackground = new FlxSprite();

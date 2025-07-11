@@ -63,7 +63,7 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		bg = new FlxSprite(-80).makeGraphic(1280, 720, 0xFFEEE4FF);
+		bg = new FlxSprite(-80).makeGraphic(1280, 720, 0xFFBFB4F1);
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.setGraphicSize(Std.int(bg.width * 1.175));
 		bg.updateHitbox();
@@ -73,7 +73,7 @@ class MainMenuState extends MusicBeatState
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		magenta = new FlxSprite(-80).makeGraphic(1280, 720, 0xFFEEE4FF);
+		magenta = new FlxSprite(-80).makeGraphic(1280, 720, 0xFFBFB4F1);
 		magenta.antialiasing = ClientPrefs.data.antialiasing;
 		magenta.setGraphicSize(Std.int(magenta.width * 1.175));
 		magenta.updateHitbox();
@@ -462,7 +462,7 @@ class MainMenuState extends MusicBeatState
 				new FlxTimer().start(0.35, function(tmr:FlxTimer)
 				{
 					FlxTween.tween(icons, {alpha: 0}, 0.3, {ease: FlxEase.quartIn});
-					FlxTween.color(bg, 0.3, 0xFFEEE4FF, 0xFFFFFFFF, {ease: FlxEase.quartIn});
+					FlxTween.color(bg, 0.3, 0xFFBFB4F1, 0xFFFFFFFF, {ease: FlxEase.quartIn});
 					FlxTween.tween(charactersWhite, {"scale.x": 15, "scale.y": 15}, 0.3, {ease: FlxEase.quartIn,onComplete: function(twn2:FlxTween) {
 						FlxTransitionableState.skipNextTransIn = true;
 						FlxTransitionableState.skipNextTransOut = true;

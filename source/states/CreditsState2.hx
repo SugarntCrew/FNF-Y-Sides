@@ -46,7 +46,7 @@ class CreditsState2 extends MusicBeatState
 		camPosLerp = new FlxObject(0, 385, 1, 1);
 		add(camPosLerp);
 
-		bg = new FlxSprite(-80).makeGraphic(1280, 720, 0xFFEEE4FF);
+		bg = new FlxSprite(-80).makeGraphic(1280, 720, 0xFFBFB4F1);
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.setGraphicSize(Std.int(bg.width * 1.175));
 		bg.updateHitbox();

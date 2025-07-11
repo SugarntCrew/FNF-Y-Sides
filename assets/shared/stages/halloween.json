@@ -16,12 +16,12 @@
 	},
 	"girlfriend": [
 		703,
-		393
+		350
 	],
 	"stageUI": "",
 	"boyfriend": [
 		927,
-		484
+		500
 	],
 	"defaultZoom": 0.5,
 	"objects": [
@@ -186,7 +186,7 @@
 	"directory": "week2",
 	"opponent": [
 		293,
-		499
+		520
 	],
 	"camera_opponent": [
 		0,

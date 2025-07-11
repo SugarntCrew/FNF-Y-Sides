@@ -108,10 +108,10 @@ class FreeplayState extends MusicBeatState
 		}
 		Mods.loadTopMod();
 
-		var colorBg:FlxSprite = new FlxSprite().makeGraphic(1280, 720, 0xFFEEE4FF);
+		var colorBg:FlxSprite = new FlxSprite().makeGraphic(1280, 720, 0xFFBFB4F1);
 		add(colorBg);
 
-		bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFFEEE4FF);
+		bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFFBFB4F1);
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.alpha = 0;
 		add(bg);

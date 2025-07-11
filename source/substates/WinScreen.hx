@@ -29,7 +29,7 @@ class WinScreen extends MusicBeatSubstate
     {
         super.create();
 
-        purpleBg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFFEEE4FF);
+        purpleBg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, 0xFFBFB4F1);
         purpleBg.alpha = 0;
         add(purpleBg);
 
