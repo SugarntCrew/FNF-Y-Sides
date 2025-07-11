@@ -1,0 +1,39 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [20, 0],
+			"anim": "firstDeath",
+			"fps": 24,
+			"name": "firstdeath",
+			"indices": []
+		},
+		{
+			"loop": true,
+			"offsets": [-26, -263],
+			"anim": "deathLoop",
+			"fps": 24,
+			"name": "deathloop",
+			"indices": []
+		},
+		{
+			"loop": false,
+			"offsets": [-26, -191],
+			"anim": "deathConfirm",
+			"fps": 24,
+			"name": "deathend",
+			"indices": []
+		}
+	],
+	"vocals_file": "",
+	"no_antialiasing": false,
+	"image": "characters/bf_HALLOWEEN_DeathScreen",
+	"position": [0, -160],
+	"healthicon": "face",
+	"flip_x": true,
+	"healthbar_colors": [49, 176, 209],
+	"camera_position": [0, 0],
+	"sing_duration": 4,
+	"scale": 1,
+	"_editor_isPlayer": true
+}
