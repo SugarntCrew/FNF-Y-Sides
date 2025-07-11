@@ -6,7 +6,7 @@
 	"gfx": 650,
 	"gfy": 150,
 	"backgroundSprite": "bg",
-	"bpm": 122,
+	"bpm": 180,
 	
 	"animation": "gfDance",
 	"idle": false,
