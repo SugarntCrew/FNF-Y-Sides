@@ -37,6 +37,7 @@ class MainMenuState extends MusicBeatState
 	var optionShit2:Array<String> = [
 		'options',
 		'awards',
+		'gallery'
 	];
 
 	var bg:FlxSprite;
@@ -350,52 +351,27 @@ class MainMenuState extends MusicBeatState
 						item = menuItems2.members[curSelected];
 				}
 
-				if(option == 'story_mode') {
-					transitionToStoryMenu();
-				}
-
-				if(option == 'freeplay') {
-					transitionToFreeplay();
-				}
-
-				if(option == 'awards') {
-					transitionToAwards();
-				}
-
-				if(option == 'credits') {
-					transitionToCredits();
-				}
-
-				if(option == 'options') {
-					transitionToOptions();
-				}
-
-				FlxFlicker.flicker(item, 1, 0.06, false, false, function(flick:FlxFlicker)
+				switch (option)
 				{
-					switch (option)
-					{
-						case 'story_mode':
-							//transitionToStoryMenu();
-						case 'freeplay':
-							//MusicBeatState.switchState(new FreeplayState());
+					case 'story_mode':
+						transitionToStoryMenu();
+					case 'freeplay':
+						transitionToFreeplay();
+					case 'awards':
+						transitionToAwards();
+					case 'credits':
+						transitionToCredits();
+					case 'options':
+						transitionToOptions();
+					case 'gallery':
+						transitionToGallery();
+					default:
+						trace('Menu Item ${option} doesn\'t do anything');
+						selectedSomethin = false;
+						item.visible = true;
+				}
 
-						#if MODS_ALLOWED
-						case 'mods':
-							MusicBeatState.switchState(new ModsMenuState());
-						#end
-
-						case 'credits':
-							//MusicBeatState.switchState(new CreditsState2());
-						case 'donate':
-							CoolUtil.browserLoad('https://ninja-muffin24.itch.io/funkin');
-							selectedSomethin = false;
-							item.visible = true;
-						default:
-							trace('Menu Item ${option} doesn\'t do anything');
-							selectedSomethin = false;
-							item.visible = true;
-					}
-				});
+				FlxFlicker.flicker(item, 1, 0.06, false, false, null);
 				
 				for (memb in menuItems)
 				{
@@ -421,8 +397,6 @@ class MainMenuState extends MusicBeatState
 				MusicBeatState.switchState(new MasterEditorMenu());
 			}
 			#end
-
-			if(FlxG.keys.justPressed.ONE) transitionToGallery();
 		}
 
 		super.update(elapsed);
@@ -459,7 +433,6 @@ class MainMenuState extends MusicBeatState
 				new FlxTimer().start(0.35, function(tmr:FlxTimer)
 				{
 					FlxTween.tween(icons, {alpha: 0}, 0.3, {ease: FlxEase.quartIn});
-					FlxTween.color(bg, 0.3, 0xFFBFB4F1, 0xFFFFFFFF, {ease: FlxEase.quartIn});
 					FlxTween.tween(charactersWhite, {"scale.x": 15, "scale.y": 15}, 0.3, {ease: FlxEase.quartIn,onComplete: function(twn2:FlxTween) {
 						FlxTransitionableState.skipNextTransIn = true;
 						FlxTransitionableState.skipNextTransOut = true;
