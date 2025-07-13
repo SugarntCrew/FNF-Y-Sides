@@ -109,9 +109,22 @@ class GalleryState extends MusicBeatState
         bfIconsBottom.antialiasing = ClientPrefs.data.antialiasing;
         add(bfIconsBottom);
 
+        // transition
+        if(GalleryStateImages.comingFromImageGallery) {
+
+            GalleryStateImages.comingFromImageGallery = false;
+
+            bfIconsTop.alpha = 0;
+            bfIconsBottom.alpha = 0;
+
+            FlxTween.tween(bfIconsTop, {alpha: 1}, 0.6);
+            FlxTween.tween(bfIconsBottom, {alpha: 1}, 0.6);
+        }
+
         changeSelect();
     }
 
+    var alreadyPressedSmth:Bool = false;
     override function update(elapsed:Float)
     {
         super.update(elapsed);
@@ -124,60 +137,65 @@ class GalleryState extends MusicBeatState
 			wiggleBg.update(elapsed);
 		}
 
-        if(controls.BACK)
-        {
-            MusicBeatState.switchState(new MainMenuState());
-        }
-
         var leftMult:Float = FlxMath.lerp(leftArrow.scale.x, 1, elapsed * 9);
         leftArrow.scale.set(leftMult, leftMult);
 
         var rightMult:Float = FlxMath.lerp(rightArrow.scale.x, 1, elapsed * 9);
         rightArrow.scale.set(rightMult, rightMult);
 
-        if(controls.UI_RIGHT_P)
+        if(!alreadyPressedSmth)
         {
-            changeSelect(1);
-            rightArrow.scale.set(1.25, 1.075);
-        }
-        if(controls.UI_LEFT_P)
-        {
-            changeSelect(-1);
-            leftArrow.scale.set(1.25, 1.075);
-        }
-
-        if(controls.ACCEPT)
-        {
-            var selectedItem:String = optArray[curSelected];
-            switch(selectedItem)
+            if(controls.BACK)
             {
-                case 'outdated_concepts':
-                    FlxG.sound.play(Paths.sound('confirmMenu'));
+                alreadyPressedSmth = true;
+                MusicBeatState.switchState(new MainMenuState());
+            }
 
-					GalleryState.linesPos.insert(0, lines.x);
-					GalleryState.linesPos.insert(1, lines.y);
+            if(controls.UI_RIGHT_P)
+            {
+                changeSelect(1);
+                rightArrow.scale.set(1.25, 1.075);
+            }
+            if(controls.UI_LEFT_P)
+            {
+                changeSelect(-1);
+                leftArrow.scale.set(1.25, 1.075);
+            }
 
-                    FlxTween.cancelTweensOf(leftArrow);
-                    for(obj in optGrp)
-                    {
-                        FlxTween.cancelTweensOf(obj);
-                    }
-                    FlxTween.cancelTweensOf(rightArrow);
+            if(controls.ACCEPT)
+            {
+                alreadyPressedSmth = true;
+                var selectedItem:String = optArray[curSelected];
+                switch(selectedItem)
+                {
+                    case 'outdated_concepts':
+                        FlxG.sound.play(Paths.sound('confirmMenu'));
 
-                    FlxTween.tween(leftArrow, {y: 800}, 0.6, {ease: FlxEase.quartIn});
-                    FlxTween.tween(optGrp.members[curSelected], {y: 800}, 0.6, {ease: FlxEase.quartIn, startDelay: 0.1});
-                    FlxTween.tween(rightArrow, {y: 800}, 0.6, {ease: FlxEase.quartIn, startDelay: 0.2});
+                        FlxTween.cancelTweensOf(leftArrow);
+                        for(obj in optGrp)
+                        {
+                            FlxTween.cancelTweensOf(obj);
+                        }
+                        FlxTween.cancelTweensOf(rightArrow);
 
-                    FlxTween.tween(bfIconsTop, {alpha: 0}, 0.6);
-                    FlxTween.tween(bfIconsBottom, {alpha: 0}, 0.6);
+                        FlxTween.tween(leftArrow, {y: 800}, 0.6, {ease: FlxEase.quartIn});
+                        FlxTween.tween(optGrp.members[curSelected], {y: 800}, 0.6, {ease: FlxEase.quartIn, startDelay: 0.1});
+                        FlxTween.tween(rightArrow, {y: 800}, 0.6, {ease: FlxEase.quartIn, startDelay: 0.2});
 
-                    new FlxTimer().start(0.8, function(t:FlxTimer)
-                    {
-						FlxTransitionableState.skipNextTransIn = true;
-						FlxTransitionableState.skipNextTransOut = true;
-                        MusicBeatState.switchState(new GalleryStateImages(selectedItem));
-                    });
-                default:
+                        FlxTween.tween(bfIconsTop, {alpha: 0}, 0.6);
+                        FlxTween.tween(bfIconsBottom, {alpha: 0}, 0.6);
+
+                        new FlxTimer().start(0.8, function(t:FlxTimer)
+                        {
+		    			    GalleryState.linesPos.insert(0, lines.x);
+		    			    GalleryState.linesPos.insert(1, lines.y);
+
+		    				FlxTransitionableState.skipNextTransIn = true;
+		    				FlxTransitionableState.skipNextTransOut = true;
+                            MusicBeatState.switchState(new GalleryStateImages(selectedItem));
+                        });
+                    default:
+                }
             }
         }
     }
@@ -239,6 +257,7 @@ class GalleryStateImages extends MusicBeatState
 	var wiggleBg:WiggleEffect = null;
 
     private static var curSelected:Int = 0;
+    public static var comingFromImageGallery:Bool = false;
 
     public function new(folderName:String)
     {
@@ -259,6 +278,27 @@ class GalleryStateImages extends MusicBeatState
         lines.antialiasing = ClientPrefs.data.antialiasing;
         lines.setPosition(GalleryState.linesPos[0], GalleryState.linesPos[1]);
         add(lines);
+
+        imageGrp = new FlxTypedGroup<GalleryObject>();
+        add(imageGrp);
+
+        leftArrow = new FlxSprite(45, 0);
+        leftArrow.loadGraphic(Paths.image('gallery/arrow'));
+        leftArrow.screenCenter(Y);
+        leftArrow.antialiasing = ClientPrefs.data.antialiasing;
+        leftArrow.scale.set(0.8, 0.8);
+        leftArrow.updateHitbox();
+        add(leftArrow);
+
+        rightArrow = new FlxSprite(45, 0);
+        rightArrow.loadGraphic(Paths.image('gallery/arrow'));
+        rightArrow.screenCenter(Y);
+        rightArrow.antialiasing = ClientPrefs.data.antialiasing;
+        rightArrow.x = FlxG.width - rightArrow.width - 45;
+        rightArrow.flipX = true;
+        rightArrow.scale.set(0.8, 0.8);
+        rightArrow.updateHitbox();
+        add(rightArrow);
 
         barTop = new FlxSprite();
         barTop.loadGraphic(Paths.image('gallery/bars'));
@@ -283,27 +323,6 @@ class GalleryStateImages extends MusicBeatState
         descText.antialiasing = ClientPrefs.data.antialiasing;
         descText.y = barBottom.y + (barBottom.height / 2) - (descText.height / 2);
         add(descText);
-
-        imageGrp = new FlxTypedGroup<GalleryObject>();
-        add(imageGrp);
-
-        leftArrow = new FlxSprite(45, 0);
-        leftArrow.loadGraphic(Paths.image('gallery/arrow'));
-        leftArrow.screenCenter(Y);
-        leftArrow.antialiasing = ClientPrefs.data.antialiasing;
-        leftArrow.scale.set(0.8, 0.8);
-        leftArrow.updateHitbox();
-        add(leftArrow);
-
-        rightArrow = new FlxSprite(45, 0);
-        rightArrow.loadGraphic(Paths.image('gallery/arrow'));
-        rightArrow.screenCenter(Y);
-        rightArrow.antialiasing = ClientPrefs.data.antialiasing;
-        rightArrow.x = FlxG.width - rightArrow.width - 45;
-        rightArrow.flipX = true;
-        rightArrow.scale.set(0.8, 0.8);
-        rightArrow.updateHitbox();
-        add(rightArrow);
 
         var imagesOnFolder = FileSystem.readDirectory('assets/shared/images/gallery/$folderName');
         
@@ -352,6 +371,7 @@ class GalleryStateImages extends MusicBeatState
         changeSelect();
     }
 
+    var alreadyPressedSmth:Bool = false;
     override function update(elapsed:Float) 
     {
         super.update(elapsed);
@@ -366,20 +386,47 @@ class GalleryStateImages extends MusicBeatState
         var rightMult:Float = FlxMath.lerp(rightArrow.scale.x, 0.8, elapsed * 12);
         rightArrow.scale.set(rightMult, rightMult);
         
-        if(controls.UI_RIGHT_P)
+        if(!alreadyPressedSmth)
         {
-            changeSelect(1);
-            rightArrow.scale.set(0.9, 0.85);
-        }
-        if(controls.UI_LEFT_P)
-        {
-            changeSelect(-1);
-            leftArrow.scale.set(0.9, 0.85);
-        }
+            if(controls.UI_RIGHT_P)
+            {
+                changeSelect(1);
+                rightArrow.scale.set(0.9, 0.85);
+            }
+            if(controls.UI_LEFT_P)
+            {
+                changeSelect(-1);
+                leftArrow.scale.set(0.9, 0.85);
+            }
 
-        if(controls.BACK)
-        {
-            MusicBeatState.switchState(new GalleryState());
+            if(controls.BACK)
+            {
+                alreadyPressedSmth = true;
+                FlxG.sound.play(Paths.sound('cancelMenu'));
+
+                FlxTween.cancelTweensOf(leftArrow);
+                for(obj in imageGrp)
+                {
+                    FlxTween.cancelTweensOf(obj);
+                }
+                FlxTween.cancelTweensOf(rightArrow);
+
+                FlxTween.tween(leftArrow, {y: 800}, 0.6, {ease: FlxEase.quartIn});
+                FlxTween.tween(imageGrp.members[curSelected], {y: 800}, 0.6, {ease: FlxEase.quartIn, startDelay: 0.1});
+                FlxTween.tween(rightArrow, {y: 800}, 0.6, {ease: FlxEase.quartIn, startDelay: 0.2});
+
+                comingFromImageGallery = true;
+
+                new FlxTimer().start(0.8, function(t:FlxTimer)
+                {
+		    		GalleryState.linesPos.insert(0, lines.x);
+		    		GalleryState.linesPos.insert(1, lines.y);
+
+		    		FlxTransitionableState.skipNextTransIn = true;
+		    		FlxTransitionableState.skipNextTransOut = true;
+                    MusicBeatState.switchState(new GalleryState());
+                });
+            }
         }
     }
     
