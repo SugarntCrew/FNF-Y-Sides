@@ -442,6 +442,17 @@ class GalleryStateImages extends MusicBeatState
         changeSelect();
     }
 
+    override function create() 
+    {
+        super.create();
+
+        titleText.alpha = 0;
+        descText.alpha = 0;
+
+        FlxTween.tween(titleText, {alpha: 1}, 0.3);
+        FlxTween.tween(descText, {alpha: 1}, 0.3);
+    }
+
     var alreadyPressedSmth:Bool = false;
     override function update(elapsed:Float) 
     {
@@ -514,6 +525,15 @@ class GalleryStateImages extends MusicBeatState
 
         if(imageDataArray[curSelected] != null)
         {
+            FlxTween.cancelTweensOf(titleText);
+            FlxTween.cancelTweensOf(descText);
+
+            titleText.alpha = 0;
+            descText.alpha = 0;
+
+            FlxTween.tween(titleText, {alpha: 1}, 0.3);
+            FlxTween.tween(descText, {alpha: 1}, 0.3);
+
             titleText.text = imageDataArray[curSelected].name != null ? imageDataArray[curSelected].name : 'Untitled';
             descText.text = imageDataArray[curSelected].description != null ? imageDataArray[curSelected].description : 'No description available.';
         }
