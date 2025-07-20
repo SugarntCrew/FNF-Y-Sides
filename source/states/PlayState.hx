@@ -2204,12 +2204,15 @@ class PlayState extends MusicBeatState
 
 		healthBarArrow.x = healthBar.barCenter - (healthBarArrow.width / 2);
 
-		iconP1.x = healthBar.x + healthBar.width - 25;
+		iconP1.x = healthBar.x + healthBar.width - 20;
 		iconP2.x = healthBar.x - iconOffset - 105;
 	}
 
 	var iconsAnimations:Bool = true;
 	var healthTween:FlxTween;
+
+	var losingIconP1:Bool = false;
+	var losingIconP2:Bool = false;
 
 	function set_health(value:Float):Float // You can alter how icon animations work here
 	{
@@ -2233,8 +2236,80 @@ class PlayState extends MusicBeatState
 		var newPercent:Null<Float> = FlxMath.remapToRange(FlxMath.bound(healthBar.valueFunction(), healthBar.bounds.min, healthBar.bounds.max), healthBar.bounds.min, healthBar.bounds.max, 0, 100);
 		healthBar.percent = (newPercent != null ? newPercent : 0);
 
-		iconP1.animation.curAnim.curFrame = (healthBar.percent < 20) ? 1 : 0; //If health is under 20%, change player icon to frame 1 (losing icon), otherwise, frame 0 (normal)
+		if(iconP1.isAnimated)
+		{
+			if(healthBar.percent < 20)
+			{
+				if(!losingIconP1)
+				{
+					iconP1.animation.play('normalToLose', true);
+					iconP1.animation.finishCallback = function(name:String)
+					{
+						if(name == 'normalToLose')
+						{
+							iconP1.animation.play('lose-loop', true);
+							iconP1.animation.finishCallback = null;
+						}
+					}
+					losingIconP1 = true;
+				}
+			}
+			else 
+			{
+				if(losingIconP1)
+				{
+					iconP1.animation.play('loseToNormal', true);
+					iconP1.animation.finishCallback = function(name:String)
+					{
+						if(name == 'loseToNormal')
+						{
+							iconP1.animation.play('normal-loop', true);
+							iconP1.animation.finishCallback = null;
+						}
+					}
+					losingIconP1 = false;
+				}
+			}
+		}
+		else iconP1.animation.curAnim.curFrame = (healthBar.percent < 20) ? 1 : 0; //If health is under 20%, change player icon to frame 1 (losing icon), otherwise, frame 0 (normal)
+
+		if(iconP2.isAnimated)
+		{
+			if(healthBar.percent > 80)
+			{
+				if(!losingIconP2)
+				{
+					iconP2.animation.play('normalToLose', true);
+					iconP2.animation.finishCallback = function(name:String)
+					{
+						if(name == 'normalToLose')
+						{
+							iconP2.animation.play('lose-loop', true);
+							iconP2.animation.finishCallback = null;
+						}
+					}
+					losingIconP2 = true;
+				}
+			}
+			else 
+			{
+				if(losingIconP2)
+				{
+					iconP2.animation.play('loseToNormal', true);
+					iconP2.animation.finishCallback = function(name:String)
+					{
+						if(name == 'loseToNormal')
+						{
+							iconP2.animation.play('normal-loop', true);
+							iconP2.animation.finishCallback = null;
+						}
+					}
+					losingIconP2 = false;
+				}
+			}
+		}
 		iconP2.animation.curAnim.curFrame = (healthBar.percent > 80) ? 1 : 0; //If health is over 80%, change opponent icon to frame 1 (losing icon), otherwise, frame 0 (normal)
+
 		return health;
 	}
 
