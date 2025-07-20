@@ -738,6 +738,18 @@ class GalleryStateMusic extends MusicBeatState
 			item.alpha = 0.6;
 			if (item.targetY == 0) item.alpha = 1;
 		}
+
+        if(FileSystem.exists('assets/songs/${musicSongsArray[curSelected]}/Full.ogg'))
+        {
+            FlxG.sound.music.stop();
+            FlxG.sound.playMusic('assets/songs/${musicSongsArray[curSelected]}/Full.ogg');
+        }
+        else
+        {
+            #if debug
+            trace('No music found for ${musicSongsArray[curSelected]}');
+            #end
+        }
     }
 }
 
