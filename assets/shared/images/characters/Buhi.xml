@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created with Free texture packer v0.6.7 http://free-tex-packer.com
+-->
+<TextureAtlas imagePath="Buhi.png" width="5730" height="532">
+  <SubTexture name="Up0000" x="0" y="0" width="431" height="225" rotated="true"  frameX="-47" frameY="-132" frameWidth="640" frameHeight="640"/>
+  <SubTexture name="Up0001" x="431" y="0" width="418" height="233" rotated="true"  frameX="-43" frameY="-145" frameWidth="640" frameHeight="640"/>
+  <SubTexture name="Up0002" x="849" y="0" width="418" height="233" rotated="true"  frameX="-43" frameY="-145" frameWidth="640" frameHeight="640"/>
+  <SubTexture name="Idle0003" x="1267" y="0" width="379" height="241" rotated="true"  frameX="-36" frameY="-178" frameWidth="640" frameHeight="640"/>
+  <SubTexture name="Idle0004" x="1646" y="0" width="379" height="241" rotated="true"  frameX="-36" frameY="-178" frameWidth="640" frameHeight="640"/>
+  <SubTexture name="Idle0002" x="2025" y="0" width="376" height="243" rotated="true"  frameX="-35" frameY="-181" frameWidth="640" frameHeight="640"/>
+  <SubTexture name="Idle0001" x="2401" y="0" width="367" height="248" rotated="true"  frameX="-32" frameY="-190" frameWidth="640" frameHeight="640"/>
+  <SubTexture name="Left0001" x="2768" y="0" width="381" height="250" rotated="true"  frameX="-25" frameY="-177" frameWidth="640" frameHeight="640"/>
+  <SubTexture name="Left0002" x="3149" y="0" width="381" height="250" rotated="true"  frameX="-25" frameY="-177" frameWidth="640" frameHeight="640"/>
+  <SubTexture name="Idle0000" x="3530" y="0" width="359" height="255" rotated="true"  frameX="-29" frameY="-198" frameWidth="640" frameHeight="640"/>
+  <SubTexture name="Left0000" x="3889" y="0" width="379" height="255" rotated="true"  frameX="-20" frameY="-179" frameWidth="640" frameHeight="640"/>
+  <SubTexture name="Down0000" x="4268" y="0" width="356" height="269" rotated="true"  frameX="-25" frameY="-208" frameWidth="640" frameHeight="640"/>
+  <SubTexture name="Down0001" x="4624" y="0" width="360" height="271" rotated="true"  frameX="-26" frameY="-204" frameWidth="640" frameHeight="640"/>
+  <SubTexture name="Down0002" x="4984" y="0" width="360" height="271" rotated="true"  frameX="-26" frameY="-204" frameWidth="640" frameHeight="640"/>
+  <SubTexture name="Right0001" x="5344" y="0" width="386" height="295" rotated="true"  frameX="-33" frameY="-172" frameWidth="640" frameHeight="640"/>
+  <SubTexture name="Right0002" x="0" y="225" width="386" height="295" rotated="true"  frameX="-33" frameY="-172" frameWidth="640" frameHeight="640"/>
+  <SubTexture name="Right0000" x="386" y="233" width="385" height="299" rotated="true"  frameX="-33" frameY="-173" frameWidth="640" frameHeight="640"/>
+</TextureAtlas>
