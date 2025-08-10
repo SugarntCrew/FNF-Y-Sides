@@ -117,4 +117,5 @@
 - [x] ENHANCEMENT: Dialogue speech box lights
 - [ ] ENHANCEMENT: Improve dialogue portraits
 - [x] RECOMMENDATION: Needs more difficulty, new players ain't playing Y Sides first so we can add something to make it a bit harder (such as health drain)
-- [ ] NEW: Add a "Time Played" system, where the game constantly record how much have you been playing the mod
+- [x] NEW: Add a "Time Played" system, where the game constantly record how much have you been playing the mod
+- [x] NEW: Animated icons
