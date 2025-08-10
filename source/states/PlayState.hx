@@ -623,21 +623,22 @@ class PlayState extends MusicBeatState
 		uiGroup.add(iconP1);
 
 		iconP2 = new HealthIcon(dad.healthIcon, false);
+		iconP2.flipX = iconP2.isAnimated;
 		iconP2.x = healthBar.x - iconOffset - 105;
 		iconP2.y = healthBar.y + (healthBar.height / 2) - (iconP2.height / 2);
 		iconP2.visible = !ClientPrefs.data.hideHud;
 		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
-		iconP2.flipX = iconP2.isAnimated;
+		trace('HEIGHT ICONP2: ${iconP2.height}');
 		uiGroup.add(iconP2);
 
 		if(use3Player)
 		{
 			iconP3 = new HealthIcon(player3.healthIcon, false);
+			iconP3.flipX = iconP3.isAnimated;
 			iconP3.x = healthBar.x - iconOffset - 105;
 			iconP3.y = healthBar.y + (healthBar.height / 2) - (iconP3.height / 2);
 			iconP3.visible = !ClientPrefs.data.hideHud;
 			iconP3.alpha = ClientPrefs.data.healthBarAlpha;
-			iconP3.flipX = iconP3.isAnimated;
 			uiGroup.add(iconP3);
 		}
 		else
@@ -805,7 +806,7 @@ class PlayState extends MusicBeatState
 		super.create();
 		Paths.clearUnusedMemory();
 
-		swapIcons(false);
+		if(iconP3 != null) swapIcons(false);
 
 		cacheCountdown();
 		cachePopUpScore();
@@ -2240,15 +2241,15 @@ class PlayState extends MusicBeatState
 		{
 			var mult:Float = FlxMath.lerp(1, iconP1.scale.x, Math.exp(-elapsed * 9 * playbackRate));
 			iconP1.scale.set(mult, mult);
-			iconP1.updateHitbox();
 		}
+		iconP1.updateHitbox();
 
 		if(iconP2.bops)
 		{
 			var mult:Float = FlxMath.lerp(1, iconP2.scale.x, Math.exp(-elapsed * 9 * playbackRate));
 			iconP2.scale.set(mult, mult);
-			iconP2.updateHitbox();
 		}
+		iconP2.updateHitbox();
 
 		if(iconP3 != null) 
 		{
@@ -2256,8 +2257,8 @@ class PlayState extends MusicBeatState
 			{
 				var mult:Float = FlxMath.lerp(1, iconP3.scale.x, Math.exp(-elapsed * 9 * playbackRate));
 				iconP3.scale.set(mult, mult);
-				iconP3.updateHitbox();
 			}
+			iconP3.updateHitbox();
 		}
 	}
 
@@ -3725,32 +3726,52 @@ class PlayState extends MusicBeatState
 		if(swappedIcons == player3Sings) return; // already swapped
 		swappedIcons = player3Sings;
 
+		var time:Float = 0.1 / playbackRate;
 		var noPlayableIconScale:Float = 0.7;
 
 		if(player3Sings)
 		{
+			/*
 			iconP2.color = 0xFF666666;
-			iconP2.bops = false;
 			iconP2.scale.set(noPlayableIconScale, noPlayableIconScale);
 			iconP2.updateHitbox();
 			iconP2.x = healthBar.x - iconOffset - 150;
 			iconP2.y = healthBar.y + (healthBar.height / 2) - (iconP2.height / 2) + 15;
+			*/
 
+			iconP2.bops = false;
 			uiGroup.remove(iconP2);
 			uiGroup.insert(6, iconP2);
 
+			FlxTween.cancelTweensOf(iconP2);
+			FlxTween.color(iconP2, time, iconP2.color, 0xFF666666);
+			FlxTween.tween(iconP2, {"scale.x": noPlayableIconScale, "scale.y": noPlayableIconScale}, time);
+			FlxTween.tween(iconP2, {x: healthBar.x - iconOffset - 160}, time);
+			FlxTween.tween(iconP2, {y: healthBar.y + (healthBar.height / 2) - 45}, time);
+
+			trace('HEIGHT ICONP2: ${iconP2.height}');
+
+			/*
 			iconP3.color = 0xFFFFFFFF;
-			iconP3.bops = true;
 			iconP3.scale.set(1, 1);
 			iconP3.updateHitbox();
 			iconP3.x = healthBar.x - iconOffset - 105;
 			iconP3.y = healthBar.y + (healthBar.height / 2) - (iconP3.height / 2);
+			*/
 
+			iconP3.bops = true;
 			uiGroup.remove(iconP3);
 			uiGroup.insert(7, iconP3);
+
+			FlxTween.cancelTweensOf(iconP3);
+			FlxTween.color(iconP3, time, 0xFF666666, 0xFFFFFFFF);
+			FlxTween.tween(iconP3, {"scale.x": 1, "scale.y": 1}, time);
+			FlxTween.tween(iconP3, {x: healthBar.x - iconOffset - 105}, time);
+			FlxTween.tween(iconP3, {y: healthBar.y + (healthBar.height / 2) - 70}, time);
 		}
 		else
 		{
+			/*
 			iconP2.color = 0xFFFFFFFF;
 			iconP2.bops = true;
 			iconP2.scale.set(1, 1);
@@ -3760,7 +3781,19 @@ class PlayState extends MusicBeatState
 
 			uiGroup.remove(iconP2);
 			uiGroup.insert(7, iconP2);
+			*/
 
+			iconP2.bops = true;
+			uiGroup.remove(iconP2);
+			uiGroup.insert(7, iconP2);
+
+			FlxTween.cancelTweensOf(iconP2);
+			FlxTween.color(iconP2, time, 0xFF666666, 0xFFFFFFFF);
+			FlxTween.tween(iconP2, {"scale.x": 1, "scale.y": 1}, time);
+			FlxTween.tween(iconP2, {x: healthBar.x - iconOffset - 105}, time);
+			FlxTween.tween(iconP2, {y: healthBar.y + (healthBar.height / 2) - 70}, time);
+
+			/*
 			iconP3.color = 0xFF666666;
 			iconP3.bops = false;
 			iconP3.scale.set(noPlayableIconScale, noPlayableIconScale);
@@ -3770,6 +3803,17 @@ class PlayState extends MusicBeatState
 
 			uiGroup.remove(iconP3);
 			uiGroup.insert(6, iconP3);
+			*/
+
+			iconP3.bops = false;
+			uiGroup.remove(iconP3);
+			uiGroup.insert(6, iconP3);
+
+			FlxTween.cancelTweensOf(iconP3);
+			FlxTween.color(iconP3, time, iconP3.color, 0xFF666666);
+			FlxTween.tween(iconP3, {"scale.x": noPlayableIconScale, "scale.y": noPlayableIconScale}, time);
+			FlxTween.tween(iconP3, {x: healthBar.x - iconOffset - 150}, time);
+			FlxTween.tween(iconP3, {y: healthBar.y + (healthBar.height / 2) - 55}, time);
 		}
 	}
 
