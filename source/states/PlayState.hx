@@ -3546,13 +3546,13 @@ class PlayState extends MusicBeatState
 			var char:Character = dad;
 			pointsTo3Player = false;
 
-			if(note.thirdPlayerNote && player3 != null) 
+			if(note.thirdPlayerNote && !note.isSustainNote && player3 != null) 
 			{
 				pointsTo3Player = true;
 				char = player3;
 			}
 
-			if(iconP3 != null) swapIcons(note.thirdPlayerNote);
+			if(iconP3 != null && !note.isSustainNote) swapIcons(note.thirdPlayerNote);
 
 			var animToPlay:String = singAnimations[Std.int(Math.abs(Math.min(singAnimations.length-1, note.noteData)))] + note.animSuffix;
 			if(note.gfNote) char = gf;
