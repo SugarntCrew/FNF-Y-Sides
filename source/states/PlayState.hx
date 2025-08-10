@@ -2801,14 +2801,25 @@ class PlayState extends MusicBeatState
 	}
 
 	var cameraTwn:FlxTween;
+	var pointsTo3Player:Bool = false;
 	public function moveCamera(isDad:Bool)
 	{
 		if(isDad)
 		{
 			if(dad == null) return;
-			camFollow.setPosition(dad.getMidpoint().x + 150, dad.getMidpoint().y - 100);
-			camFollow.x += dad.cameraPosition[0] + opponentCameraOffset[0];
-			camFollow.y += dad.cameraPosition[1] + opponentCameraOffset[1];
+			if(pointsTo3Player)
+			{
+				if(player3 == null) return;
+				camFollow.setPosition(player3.getMidpoint().x + 150, player3.getMidpoint().y - 100);
+				camFollow.x += player3.cameraPosition[0] + opponentCameraOffset[0];
+				camFollow.y += player3.cameraPosition[1] + opponentCameraOffset[1];
+			}
+			else
+			{
+				camFollow.setPosition(dad.getMidpoint().x + 150, dad.getMidpoint().y - 100);
+				camFollow.x += dad.cameraPosition[0] + opponentCameraOffset[0];
+				camFollow.y += dad.cameraPosition[1] + opponentCameraOffset[1];
+			}
 			//tweenCamIn();
 		}
 		else
@@ -3485,7 +3496,14 @@ class PlayState extends MusicBeatState
 		else if(!note.noAnimation)
 		{
 			var char:Character = dad;
-			if(note.thirdPlayerNote && player3 != null) char = player3;
+			pointsTo3Player = false;
+
+			if(note.thirdPlayerNote && player3 != null) 
+			{
+				pointsTo3Player = true;
+				char = player3;
+			}
+			
 			var animToPlay:String = singAnimations[Std.int(Math.abs(Math.min(singAnimations.length-1, note.noteData)))] + note.animSuffix;
 			if(note.gfNote) char = gf;
 
