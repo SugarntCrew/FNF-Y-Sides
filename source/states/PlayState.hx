@@ -625,6 +625,7 @@ class PlayState extends MusicBeatState
 		iconP2.y = healthBar.y + (healthBar.height / 2) - (iconP2.height / 2);
 		iconP2.visible = !ClientPrefs.data.hideHud;
 		iconP2.alpha = ClientPrefs.data.healthBarAlpha;
+		iconP2.flipX = iconP2.isAnimated;
 		uiGroup.add(iconP2);
 
 		if(use3Player)
@@ -633,6 +634,7 @@ class PlayState extends MusicBeatState
 			iconP3.y = healthBar.y + (healthBar.height / 2) - (iconP3.height / 2);
 			iconP3.visible = !ClientPrefs.data.hideHud;
 			iconP3.alpha = ClientPrefs.data.healthBarAlpha;
+			iconP3.flipX = iconP3.isAnimated;
 			uiGroup.add(iconP3);
 		}
 		else
@@ -3853,9 +3855,9 @@ class PlayState extends MusicBeatState
 		if (generatedMusic)
 			notes.sort(FlxSort.byY, ClientPrefs.data.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);
 
-		iconP1.scale.set(1.2, 1.2);
-		iconP2.scale.set(1.2, 1.2);
-		if(iconP3 != null) iconP3.scale.set(1.2, 1.2);
+		iconP1.scale.set(1.05, 1.05);
+		iconP2.scale.set(1.05, 1.05);
+		if(iconP3 != null) iconP3.scale.set(1.05, 1.05);
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
