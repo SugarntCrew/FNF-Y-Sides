@@ -2388,42 +2388,45 @@ class PlayState extends MusicBeatState
 		}
 		else iconP2.animation.curAnim.curFrame = (healthBar.percent > 80) ? 1 : 0; //If health is over 80%, change opponent icon to frame 1 (losing icon), otherwise, frame 0 (normal)
 		
-		if(iconP3.isAnimated)
+		if(iconP3 != null)
 		{
-			if(healthBar.percent > 80)
+			if(iconP3.isAnimated)
 			{
-				if(!losingIconP3)
+				if(healthBar.percent > 80)
 				{
-					iconP3.animation.play('normalToLose', true);
-					iconP3.animation.finishCallback = function(name:String)
+					if(!losingIconP3)
 					{
-						if(name == 'normalToLose')
+						iconP3.animation.play('normalToLose', true);
+						iconP3.animation.finishCallback = function(name:String)
 						{
-							iconP3.animation.play('lose-loop', true);
-							iconP3.animation.finishCallback = null;
+							if(name == 'normalToLose')
+							{
+								iconP3.animation.play('lose-loop', true);
+								iconP3.animation.finishCallback = null;
+							}
 						}
+						losingIconP3 = true;
 					}
-					losingIconP3 = true;
+				}
+				else 
+				{
+					if(losingIconP3)
+					{
+						iconP3.animation.play('loseToNormal', true);
+						iconP3.animation.finishCallback = function(name:String)
+						{
+							if(name == 'loseToNormal')
+							{
+								iconP3.animation.play('normal-loop', true);
+								iconP3.animation.finishCallback = null;
+							}
+						}
+						losingIconP3 = false;
+					}
 				}
 			}
-			else 
-			{
-				if(losingIconP3)
-				{
-					iconP3.animation.play('loseToNormal', true);
-					iconP3.animation.finishCallback = function(name:String)
-					{
-						if(name == 'loseToNormal')
-						{
-							iconP3.animation.play('normal-loop', true);
-							iconP3.animation.finishCallback = null;
-						}
-					}
-					losingIconP3 = false;
-				}
-			}
+			else iconP3.animation.curAnim.curFrame = (healthBar.percent > 80) ? 1 : 0; //If health is over 80%, change player3 icon to frame 1 (losing icon), otherwise, frame 0 (normal)
 		}
-		else iconP3.animation.curAnim.curFrame = (healthBar.percent > 80) ? 1 : 0; //If health is over 80%, change player3 icon to frame 1 (losing icon), otherwise, frame 0 (normal)
 
 		return health;
 	}
