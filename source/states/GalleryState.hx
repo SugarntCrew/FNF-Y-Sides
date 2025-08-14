@@ -94,6 +94,7 @@ class GalleryState extends MusicBeatState
             spr.loadGraphic(Paths.image('gallery/' + optArray[i]));
             spr.antialiasing = ClientPrefs.data.antialiasing;
             spr.screenCenter();
+            spr.startPosition = new FlxPoint(spr.x, spr.y);
             spr.targetX = i;
             spr.x += FlxG.width * i;
             spr.shader = wiggle;
