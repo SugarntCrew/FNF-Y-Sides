@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="icon-buhi.png">
+<SubTexture name="normal_loop0000" x="347" y="0" width="129" height="131" frameX="-244" frameY="-151" frameWidth="640" frameHeight="480" />
+<SubTexture name="normal_loop0001" x="114" y="153" width="129" height="132" frameX="-244" frameY="-151" frameWidth="640" frameHeight="480" />
+<SubTexture name="normal_to_lose0000" x="231" y="0" width="116" height="142" frameX="-253" frameY="-138" frameWidth="640" frameHeight="480" />
+<SubTexture name="normal_to_lose0001" x="0" y="153" width="114" height="141" frameX="-262" frameY="-148" frameWidth="640" frameHeight="480" />
+<SubTexture name="lose_loop0000" x="116" y="0" width="115" height="151" frameX="-257" frameY="-141" frameWidth="640" frameHeight="480" />
+<SubTexture name="lose_loop0001" x="0" y="0" width="116" height="153" frameX="-255" frameY="-140" frameWidth="640" frameHeight="480" />
+<SubTexture name="lose_to_normal0000" x="0" y="153" width="114" height="141" frameX="-262" frameY="-148" frameWidth="640" frameHeight="480" />
+<SubTexture name="lose_to_normal0001" x="231" y="0" width="116" height="142" frameX="-253" frameY="-138" frameWidth="640" frameHeight="480" />
+</TextureAtlas>

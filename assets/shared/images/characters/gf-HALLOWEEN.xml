@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="gf-HALLOWEEN.png">
+<SubTexture name="danceRight0000" x="0" y="0" width="295" height="389" frameX="-170" frameY="-32" frameWidth="640" frameHeight="480" />
+</TextureAtlas>

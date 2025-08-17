@@ -1866,7 +1866,7 @@
 			"bpm": 167
 		}
 	],
-	"gfVersion": "gf",
+	"gfVersion": "gf-spooky",
 	"gameOverLoop": "gameOver",
 	"player3": "frank",
 	"gameOverChar": "bf-spooky-dead",
