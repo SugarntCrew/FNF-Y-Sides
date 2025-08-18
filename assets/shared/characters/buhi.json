@@ -47,7 +47,7 @@
 	"position": [240, -20],
 	"healthicon": "buhi",
 	"flip_x": false,
-	"healthbar_colors": [49, 176, 209],
+	"healthbar_colors": [233, 234, 255],
 	"camera_position": [-510, -60],
 	"sing_duration": 4,
 	"scale": 1,
