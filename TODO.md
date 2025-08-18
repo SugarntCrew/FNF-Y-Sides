@@ -49,11 +49,11 @@
 
 ## SONGS
 
-- [ ] Spookeez
-- [ ] South
+- [x] Spookeez
+- [x] South
 - [ ] Monster
 - [ ] Pico
-- [ ] Philly Nice
+- [x] Philly Nice
 - [ ] Blammed
 
 ## SPRITES
