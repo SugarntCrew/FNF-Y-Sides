@@ -94,7 +94,7 @@
 - [ ] Dialogues (Week 3)
 - [ ] Mechanics (Week 3)
 
-- [ ] New volume soundtray
+- [x] New volume soundtray
 
 - [ ] Test (SONGCARD)
 - [ ] Tutorial (SONGCARD)
