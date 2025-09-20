@@ -15,6 +15,8 @@ class ResultsScreen extends MusicBeatSubstate
     {
         super.create();
 
+        FlxG.sound.playMusic(Paths.music('winScreen'));
+
         var bg = new FlxSprite();
         bg.makeGraphic(FlxG.width, FlxG.height, 0xFFCFC6F3);
         add(bg);
