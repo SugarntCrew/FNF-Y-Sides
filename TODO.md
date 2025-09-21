@@ -68,7 +68,7 @@
 
 ## HUD
 
-- [ ] Pico icons
+- [x] Pico icons
 - [HALF] Spooky kids icons
 - [ ] Monster icons
 
