@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="ranks.png">
+<SubTexture name="dame tu costia0000" x="0" y="0" width="236" height="236" frameX="-702" frameY="-229" frameWidth="1280" frameHeight="720" />
+<SubTexture name="dame tu costia0001" x="236" y="0" width="236" height="236" frameX="-702" frameY="-229" frameWidth="1280" frameHeight="720" />
+<SubTexture name="dame tu costia0002" x="0" y="236" width="236" height="236" frameX="-702" frameY="-229" frameWidth="1280" frameHeight="720" />
+<SubTexture name="dame tu costia0003" x="236" y="236" width="236" height="236" frameX="-702" frameY="-229" frameWidth="1280" frameHeight="720" />
+<SubTexture name="dame tu costia0004" x="472" y="0" width="236" height="236" frameX="-702" frameY="-229" frameWidth="1280" frameHeight="720" />
+<SubTexture name="dame tu costia0005" x="472" y="236" width="236" height="236" frameX="-702" frameY="-229" frameWidth="1280" frameHeight="720" />
+</TextureAtlas>

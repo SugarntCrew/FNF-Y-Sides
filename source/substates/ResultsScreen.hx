@@ -18,6 +18,12 @@ class ResultsScreen extends MusicBeatSubstate
     var scoreTxt:FlxText;
     var missesTxt:FlxText;
     var ratingTxt:FlxText;
+    
+    var statsTxt:FlxText;
+    var sicksTxt:FlxText;
+    var goodsTxt:FlxText;
+    var badsTxt:FlxText;
+    var shitsTxt:FlxText;
 
     var ratingName = '';
     var bfAnimName = '';
@@ -105,9 +111,34 @@ class ResultsScreen extends MusicBeatSubstate
         add(missesTxt);
 
         ratingTxt = new FlxText(0, missesTxt.y + 45, 0, "RATING: " + rating);
-        ratingTxt.setFormat(Paths.font('FredokaOne-Regular.ttf'), 28, 0xFFB996D4, 'center');
+        ratingTxt.setFormat(Paths.font('FredokaOne-Regular.ttf'), 28, 0xFFB996D4, LEFT);
         ratingTxt.x = board.x + 25;
         add(ratingTxt);
+
+        statsTxt = new FlxText(0, ratingTxt.y + 100, 0, "STATUS:");
+        statsTxt.setFormat(Paths.font('FredokaOne-Regular.ttf'), 28, 0xFFB996D4, LEFT);
+        statsTxt.x = board.x + 25;
+        add(statsTxt);
+
+        sicksTxt = new FlxText(0, statsTxt.y + 40, 0, "Sicks: 0");
+        sicksTxt.setFormat(Paths.font('FredokaOne-Regular.ttf'), 18, 0xFFB996D4, LEFT);
+        sicksTxt.x = board.x + 25;
+        add(sicksTxt);
+
+        goodsTxt = new FlxText(0, sicksTxt.y + 25, 0, "Goods: 0");
+        goodsTxt.setFormat(Paths.font('FredokaOne-Regular.ttf'), 18, 0xFFB996D4, LEFT);
+        goodsTxt.x = board.x + 25;
+        add(goodsTxt);
+
+        badsTxt = new FlxText(0, goodsTxt.y + 25, 0, "Bads: 0");
+        badsTxt.setFormat(Paths.font('FredokaOne-Regular.ttf'), 18, 0xFFB996D4, LEFT);
+        badsTxt.x = board.x + 25;
+        add(badsTxt);
+
+        shitsTxt = new FlxText(0, badsTxt.y + 25, 0, "Shits: 0");
+        shitsTxt.setFormat(Paths.font('FredokaOne-Regular.ttf'), 18, 0xFFB996D4, LEFT);
+        shitsTxt.x = board.x + 25;
+        add(shitsTxt);
 
         ratingAnimData();
         startBfAnim();
