@@ -30,9 +30,19 @@ class ResultsScreen extends MusicBeatSubstate
 
     var rating = PlayState.instance.ratingPercent * 100;
 
+    var sick:Int = 0;
+    var good:Int = 0;
+    var bad:Int = 0;
+    var shit:Int = 0;
+
     override function create() 
     {
         super.create();
+
+        sick = PlayState.instance.ratingsData[0].hits;
+        good = PlayState.instance.ratingsData[1].hits;
+        bad = PlayState.instance.ratingsData[2].hits;
+        shit = PlayState.instance.ratingsData[3].hits;
 
         FlxG.sound.playMusic(Paths.music('winScreen'));
 
@@ -110,7 +120,8 @@ class ResultsScreen extends MusicBeatSubstate
         missesTxt.x = board.x + 25;
         add(missesTxt);
 
-        ratingTxt = new FlxText(0, missesTxt.y + 45, 0, "RATING: " + rating);
+        rating = FlxMath.roundDecimal(rating, 2);
+        ratingTxt = new FlxText(0, missesTxt.y + 45, 0, "RATING: " + rating + "%");
         ratingTxt.setFormat(Paths.font('FredokaOne-Regular.ttf'), 28, 0xFFB996D4, LEFT);
         ratingTxt.x = board.x + 25;
         add(ratingTxt);
@@ -120,22 +131,22 @@ class ResultsScreen extends MusicBeatSubstate
         statsTxt.x = board.x + 25;
         add(statsTxt);
 
-        sicksTxt = new FlxText(0, statsTxt.y + 40, 0, "Sicks: 0");
+        sicksTxt = new FlxText(0, statsTxt.y + 40, 0, "Sicks: " + sick);
         sicksTxt.setFormat(Paths.font('FredokaOne-Regular.ttf'), 18, 0xFFB996D4, LEFT);
         sicksTxt.x = board.x + 25;
         add(sicksTxt);
 
-        goodsTxt = new FlxText(0, sicksTxt.y + 25, 0, "Goods: 0");
+        goodsTxt = new FlxText(0, sicksTxt.y + 25, 0, "Goods: " + good);
         goodsTxt.setFormat(Paths.font('FredokaOne-Regular.ttf'), 18, 0xFFB996D4, LEFT);
         goodsTxt.x = board.x + 25;
         add(goodsTxt);
 
-        badsTxt = new FlxText(0, goodsTxt.y + 25, 0, "Bads: 0");
+        badsTxt = new FlxText(0, goodsTxt.y + 25, 0, "Bads: " + bad);
         badsTxt.setFormat(Paths.font('FredokaOne-Regular.ttf'), 18, 0xFFB996D4, LEFT);
         badsTxt.x = board.x + 25;
         add(badsTxt);
 
-        shitsTxt = new FlxText(0, badsTxt.y + 25, 0, "Shits: 0");
+        shitsTxt = new FlxText(0, badsTxt.y + 25, 0, "Shits: " + shit);
         shitsTxt.setFormat(Paths.font('FredokaOne-Regular.ttf'), 18, 0xFFB996D4, LEFT);
         shitsTxt.x = board.x + 25;
         add(shitsTxt);
