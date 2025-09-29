@@ -155,8 +155,8 @@ class ResultsScreen extends MusicBeatSubstate
         shitsTxt.x = board.x + 25;
         add(shitsTxt);
 
-        rank.x = board.x + board.width - rank.width - 10;
-        rank.y = board.y + board.height - rank.height - 10;
+        rank.x = board.x + board.width - rank.width - 30;
+        rank.y = board.y + board.height - rank.height - 20;
         add(rank);
 
         ratingAnimData();
@@ -264,20 +264,15 @@ class ResultsScreenRank extends FlxSprite
 		animation.add(rank, [for(i in 0...frames.frames.length) i], 0, false, false);
 		animation.play(rank);
 
-        switch(rank)
+        animation.curAnim.curFrame = switch(rank)
         {
-            case 's':
-                animation.curAnim.curFrame = 0;
-            case 'a':
-                animation.curAnim.curFrame = 1;
-            case 'b':
-                animation.curAnim.curFrame = 2;
-            case 'c':
-                animation.curAnim.curFrame = 3;
-            case 'd':
-                animation.curAnim.curFrame = 4;
-            case 'e':
-                animation.curAnim.curFrame = 5;
+            case 's': 0;
+            case 'a': 1;
+            case 'b': 2;
+            case 'c': 3;
+            case 'd': 4;
+            case 'e': 5;
+            default: 0;
         }
     }
 }
