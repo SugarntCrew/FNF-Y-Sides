@@ -278,6 +278,9 @@ class GalleryState extends MusicBeatState
                         FlxTween.tween(bfIconsTop, {alpha: 0}, 0.6);
                         FlxTween.tween(bfIconsBottom, {alpha: 0}, 0.6);
 
+                        FlxTween.tween(barTop, {y: -barTop.height}, 0.6, {ease: FlxEase.quartIn});
+                        FlxTween.tween(barBottom, {y: FlxG.height}, 0.6, {ease: FlxEase.quartIn});
+
                         new FlxTimer().start(0.8, function(t:FlxTimer)
                         {
 		    			    GalleryState.linesPos.insert(0, lines.x);
@@ -684,6 +687,7 @@ class GalleryStateMusic extends MusicBeatState
             spr.x = arrowUp.x + (arrowUp.width / 2) - (spr.width / 2);
             spr.startPosition = new FlxPoint(spr.x, spr.y);
             spr.targetY = i;
+            spr.ID = i;
             spr.y += FlxG.height * i;
             musicSongsGrp.add(spr);
         }
@@ -702,6 +706,44 @@ class GalleryStateMusic extends MusicBeatState
             var embedMusic = new FlxSound();
             embedMusic.loadEmbedded('assets/songs/$song/Full.ogg');
             preloadedMusicMap.set(song, embedMusic);
+        }
+    }
+
+    override function create()
+    {
+        super.create();
+
+        barLeft.x = 0 - barLeft.width;
+        FlxTween.tween(barLeft, {x: 0}, 0.3, {ease: FlxEase.quartOut});
+
+        barRight.x = FlxG.width;
+        FlxTween.tween(barRight, {x: FlxG.width - barRight.width}, 0.3, {ease: FlxEase.quartOut});
+
+        diskIconsLeft.x = -barLeft.width;
+        FlxTween.tween(diskIconsLeft, {x: barLeft.x + (barLeft.width / 2) - (diskIconsLeft.width / 2) - (17 / 2)}, 0.3, {ease: FlxEase.quartOut});
+
+        diskIconsRight.x = FlxG.width;
+        FlxTween.tween(diskIconsRight, {x: barRight.x + (barRight.width / 2) - (diskIconsRight.width / 2) + (17 / 2)}, 0.3, {ease: FlxEase.quartOut});
+
+        panel.y += 10;
+        panel.alpha = 0;
+        FlxTween.tween(panel, {y: panel.y - 10, alpha: 1}, 0.3, {ease: FlxEase.quartOut});
+
+        bf.y += 10;
+        bf.alpha = 0;
+        FlxTween.tween(bf, {y: bf.y - 10, alpha: 1}, 0.3, {ease: FlxEase.quartOut});
+
+        arrowUp.alpha = 0;
+        FlxTween.tween(arrowUp, {alpha: 1}, 0.6, {ease: FlxEase.quartOut, startDelay: 0.3});
+
+        arrowDown.alpha = 0;
+        FlxTween.tween(arrowDown, {alpha: 1}, 0.6, {ease: FlxEase.quartOut, startDelay: 0.3});
+
+        for(obj in musicSongsGrp)
+        {
+            obj.alpha = 0;
+            obj.x += -10;
+            FlxTween.tween(obj, {x: obj.x + 10, alpha: 1}, 0.4, {ease: FlxEase.quartOut, startDelay: 0.1 * obj.ID});
         }
     }
 
@@ -740,9 +782,39 @@ class GalleryStateMusic extends MusicBeatState
 
             if(controls.BACK)
             {
-                MusicBeatState.switchState(new GalleryState());
+                goBack();
+                //MusicBeatState.switchState(new GalleryState());
             }
         }
+    }
+
+    function goBack()
+    {
+		FlxTransitionableState.skipNextTransIn = true;
+		FlxTransitionableState.skipNextTransOut = true;
+
+        var tweenDuration:Float = 0.3;
+
+        FlxTween.tween(barLeft, {x: -barLeft.width}, tweenDuration, {ease: FlxEase.quartOut});
+        FlxTween.tween(barRight, {x: FlxG.width}, tweenDuration, {ease: FlxEase.quartOut});
+        FlxTween.tween(diskIconsLeft, {x: -diskIconsLeft.width}, tweenDuration, {ease: FlxEase.quartOut});
+        FlxTween.tween(diskIconsRight, {x: FlxG.width}, tweenDuration, {ease: FlxEase.quartOut});
+        FlxTween.tween(panel, {y: panel.y - 10, alpha: 0}, tweenDuration, {ease: FlxEase.quartOut});
+        FlxTween.tween(bf, {y: bf.y - 10, alpha: 0}, tweenDuration, {ease: FlxEase.quartOut});
+        FlxTween.tween(arrowUp, {alpha: 0}, tweenDuration, {ease: FlxEase.quartOut});
+        FlxTween.tween(arrowDown, {alpha: 0}, tweenDuration, {ease: FlxEase.quartOut});
+        for(obj in musicSongsGrp)
+        {
+            FlxTween.tween(obj, {y: obj.y - 10, alpha: 0}, tweenDuration, {ease: FlxEase.quartOut});
+        }
+
+        new FlxTimer().start(tweenDuration + 0.2, function(t:FlxTimer)
+        {
+		    GalleryState.linesPos.insert(0, lines.x);
+		    GalleryState.linesPos.insert(1, lines.y);
+
+            MusicBeatState.switchState(new GalleryState());
+        });
     }
     
     private static var curSelected:Int = 0;
