@@ -21,6 +21,7 @@ class PauseSubState extends MusicBeatSubstate
 	var dots:FlxBackdrop;
 	var barTop:FlxSprite;
 	var thing:FlxSprite;
+	var ogYThing:Float;
 	var barBottom:FlxSprite;
 
 	public static var songName:String = null;
@@ -101,8 +102,6 @@ class PauseSubState extends MusicBeatSubstate
 		thing.antialiasing = ClientPrefs.data.antialiasing;
 		thing.screenCenter(X);
 		add(thing);
-
-
 
 		FlxTween.tween(barTop, {y: -20}, 0.25, {ease: FlxEase.backOut});
 		FlxTween.tween(barBottom, {y: 20}, 0.25, {ease: FlxEase.backOut});
@@ -196,21 +195,21 @@ class PauseSubState extends MusicBeatSubstate
 		if (curSelected == 0) {
 			thing.animation.play('resum');
 
-			thing.y = thing.y + 20;
+			thing.y = ogYThing + 20;
 			FlxTween.tween(thing, {y: thing.y - 20}, 0.1, {ease: FlxEase.circOut});
 		}
 
 		if (curSelected == 1) {
 			thing.animation.play('restarr');
 
-			thing.y = thing.y + 20;
+			thing.y = ogYThing + 20;
 			FlxTween.tween(thing, {y: thing.y - 20}, 0.1, {ease: FlxEase.circOut});
 		}
 
 		if (curSelected == 2) {
 			thing.animation.play('exit');
 
-			thing.y = thing.y + 20;
+			thing.y = ogYThing + 20;
 			FlxTween.tween(thing, {y: thing.y - 20}, 0.1, {ease: FlxEase.circOut});
 		}
 	}
@@ -245,6 +244,7 @@ class PauseSubState extends MusicBeatSubstate
 		}
 
 		thing.y = grpMenuItems.members[curSelected].y - grpMenuItems.members[curSelected].height - 30;
+		ogYThing = thing.y;
 
 		curSelected = 0; // Restart por defecto
 	}
