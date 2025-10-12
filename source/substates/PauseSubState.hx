@@ -108,8 +108,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		regenMenu();
 
-		// CamOther para todo
-		cameras = [FlxG.cameras.list[1]];
+		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 
 		super.create();
 	}
@@ -122,9 +121,12 @@ class PauseSubState extends MusicBeatSubstate
 		return (formattedSongName != '') ? formattedSongName : formattedPauseMusic;
 	}
 
+	var timeElapsedOnMenu:Float = 0;
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		timeElapsedOnMenu += elapsed;
 
 		// Fade in suave
 		if (bg.alpha < 0.6) bg.alpha = FlxMath.lerp(bg.alpha, 0.6, 10 * elapsed);
@@ -138,7 +140,7 @@ class PauseSubState extends MusicBeatSubstate
 		if (controls.UI_LEFT_P) changeSelection(-1);
 		if (controls.UI_RIGHT_P) changeSelection(1);
 
-		if (controls.ACCEPT) {
+		if (controls.ACCEPT && timeElapsedOnMenu > 0.2) {
 			var daSelected:String = menuItems[curSelected];
 			switch (daSelected) {
 				case "Resume":
