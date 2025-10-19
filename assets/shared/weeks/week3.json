@@ -1,7 +1,7 @@
 {
 	"songs": [
-		["Pico", "dad", [97, 181, 180]],
-		["Philly Nice", "dad", [97, 181, 180]]
+		["Pico", "pico", [97, 181, 180]],
+		["Philly Nice", "pico", [97, 181, 180]]
 	],
 
 	"weekCharacters": [
