@@ -49,6 +49,7 @@ class ResultsScreen extends MusicBeatSubstate
     var rankName:String = "";
 
     var blackBackground:FlxSprite;
+    var whiteBackground:FlxSprite;
 
     override function create() 
     {
@@ -94,6 +95,11 @@ class ResultsScreen extends MusicBeatSubstate
         add(blackBackground);
 
         FlxTween.tween(blackBackground, {alpha: 0.5}, 0.7);
+
+        whiteBackground = new FlxSprite();
+        whiteBackground.makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE);
+        whiteBackground.alpha = 0;
+        add(whiteBackground);
 
         boyfriend = new Character(0, 300, 'bf-WinScreen');
         boyfriend.screenCenter(Y);
@@ -146,7 +152,7 @@ class ResultsScreen extends MusicBeatSubstate
         add(board);
 
         //boyfriend.x = board.x - 390;
-        boyfriend.x = 0 - boyfriend.width;
+        boyfriend.x = 0 - boyfriend.width - 100;
         FlxTween.tween(boyfriend, {x: board.x - 400}, 1.2, {ease: FlxEase.quartOut, startDelay: 0.25});
 
         scoreTxt = new FlxText(0, board.y + 30, 0, "SCORE: 0");
@@ -253,7 +259,7 @@ class ResultsScreen extends MusicBeatSubstate
 
                 if(getRankName() == 'e')
                 {
-                    trace('pollita inicial');
+                    trace('curbeat 0');
                     FlxTween.cancelTweensOf(PlayState.instance.camOther.zoom);
 
                     PlayState.instance.camOther.zoom = 1.03;
@@ -341,7 +347,7 @@ class ResultsScreen extends MusicBeatSubstate
         switch(sickBeats)
         {
             case 2 | 3:
-                trace('pollita');
+                trace('curbeat $sickBeats');
 
                 FlxTween.cancelTweensOf(PlayState.instance.camOther.zoom);
 
@@ -357,6 +363,9 @@ class ResultsScreen extends MusicBeatSubstate
                     FlxTween.angle(boyfriend, -3, 3, 3, {ease: FlxEase.cubeInOut, type: PINGPONG});
 
                     FlxTween.tween(blackBackground, {alpha: getRankName() == 'e' ? 0.25 : 0}, 0.5);
+
+                    whiteBackground.alpha = 1;
+                    FlxTween.tween(whiteBackground, {alpha: 0}, 0.5);
                 }
         }
 
