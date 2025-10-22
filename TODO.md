@@ -59,7 +59,7 @@
 ## SPRITES
 
 - [x] Girlfriend (NEW)
-- [ ] Girlfriend (SPOOKY VERSION)
+- [x] Girlfriend (SPOOKY VERSION)
 - [x] Boyfriend (SPOOKY VERSION)
 - [x] Boyfriend Death (SPOOKY VERSION)
 - [x] Spooky kids
