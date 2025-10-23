@@ -430,22 +430,22 @@ class TitleState extends MusicBeatState
 				transitioning = true;
 				// FlxG.sound.music.stop();
 
-				FlxTween.num(1.8, 2, 1, {ease: FlxEase.quartOut}, function(v:Float)
+				FlxTween.num(1.7, 2, 1.3, {ease: FlxEase.quartOut}, function(v:Float)
 				{
 					bloom.dim.value[0] = v;
 				});
 
-				FlxTween.num(2, 10, 1, {ease: FlxEase.quartOut}, function(v:Float)
+				FlxTween.num(1.7, 10, 1.3, {ease: FlxEase.quartOut}, function(v:Float)
 				{
 					bloom.Directions.value[0] = v;
 				});
 
-				FlxTween.num(4, 0, 1, {ease: FlxEase.quartOut}, function(v:Float)
+				FlxTween.num(4, 0, 1.3, {ease: FlxEase.quartOut}, function(v:Float)
 				{
 					bloom.Size.value[0] = v;
 				});
 
-				new FlxTimer().start(0.6, function(tmr:FlxTimer)
+				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
 
 					FlxTween.tween(icons, {alpha: 0}, 0.6);
@@ -623,12 +623,28 @@ class TitleState extends MusicBeatState
 					deleteCoolText();
 				case 13:
 					addMoreText('Friday');
+					for(obj in textGroup)
+					{
+						FlxTween.shake(obj, 0.01, Conductor.crochet / 1000, {ease: FlxEase.linear});
+					}
 				case 14:
 					addMoreText('Night');
+					for(obj in textGroup)
+					{
+						FlxTween.shake(obj, 0.01, Conductor.crochet / 1000, {ease: FlxEase.linear});
+					}
 				case 15:
 					addMoreText('Funkin');
+					for(obj in textGroup)
+					{
+						FlxTween.shake(obj, 0.01, Conductor.crochet / 1000, {ease: FlxEase.linear});
+					}
 				case 16:
 					addMoreText('Y Sides'); // credTextShit.text += '\nFunkin';
+					for(obj in textGroup)
+					{
+						FlxTween.shake(obj, 0.01, Conductor.crochet / 1000, {ease: FlxEase.linear});
+					}
 				case 17:
 					deleteCoolText();
 					skipIntro();
@@ -703,7 +719,7 @@ class TitleState extends MusicBeatState
 			{
 				remove(ngSpr);
 				remove(credGroup);
-				FlxG.camera.flash(FlxColor.WHITE, 4);
+				FlxG.camera.flash(FlxColor.WHITE, 0.8);
 
 				var easteregg:String = FlxG.save.data.psychDevsEasterEgg;
 				if (easteregg == null) easteregg = '';
