@@ -58,8 +58,8 @@ class ResultsScreen extends MusicBeatSubstate
     {
         super.create();
 
-        totalScore = PlayState.isStoryMode ? PlayState.campaignScore : totalScore;
-        totalMisses = PlayState.isStoryMode ? PlayState.campaignMisses : totalMisses;
+        totalScore = PlayState.isStoryMode ? PlayState.campaignScore : PlayState.instance.songScore;
+        totalMisses = PlayState.isStoryMode ? PlayState.campaignMisses : PlayState.instance.songMisses;
         totalRating = PlayState.isStoryMode ? PlayState.campaignRating / PlayState.totalSongsPlayed : PlayState.instance.ratingPercent * 100;
         trace('${PlayState.campaignRating} / ${PlayState.totalSongsPlayed} = $totalRating');
 
