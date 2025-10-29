@@ -57,6 +57,9 @@ class FreeplayState extends MusicBeatState
 
 	var player:MusicPlayer;
 
+	var diffArrowUp:FlxSprite;
+	var diffArrowDown:FlxSprite;
+
 	override function create()
 	{
 		//Paths.clearStoredMemory();
@@ -199,11 +202,26 @@ class FreeplayState extends MusicBeatState
 		scoreText.antialiasing = ClientPrefs.data.antialiasing;
 
 		diffText = new FlxText(scoreText.x, scoreText.y + scoreText.height + 40, scoreThing.width - 20, "", 78);
-		diffText.setFormat(Paths.font("FredokaOne-Regular.ttf"), 78, FlxColor.WHITE, CENTER);
+		diffText.setFormat(Paths.font("FredokaOne-Regular.ttf"), 70, FlxColor.WHITE, CENTER);
 		diffText.antialiasing = ClientPrefs.data.antialiasing;
 		add(diffText);
 
 		add(scoreText);
+
+		diffArrowUp = new FlxSprite();
+		diffArrowUp.loadGraphic(Paths.image('freePlay/freeplay_diff_arrow'));
+		diffArrowUp.setPosition(diffText.x + (diffText.width / 2) - (diffArrowUp.width / 2), scoreThing.y + 160);
+		diffArrowUp.scale.set(0.9, 0.9);
+		diffArrowUp.antialiasing = ClientPrefs.data.antialiasing;
+		add(diffArrowUp);
+
+		diffArrowDown = new FlxSprite();
+		diffArrowDown.loadGraphic(Paths.image('freePlay/freeplay_diff_arrow'));
+		diffArrowDown.setPosition(diffText.x + (diffText.width / 2) - (diffArrowDown.width / 2), diffArrowUp.y + 100);
+		diffArrowDown.scale.set(0.9, 0.9);
+		diffArrowDown.antialiasing = ClientPrefs.data.antialiasing;
+		diffArrowDown.flipY = true;
+		add(diffArrowDown);
 
 		cloud = new FlxSprite(750, 720);
 		cloud.loadGraphic(Paths.image('freePlay/cloud'));
@@ -224,6 +242,8 @@ class FreeplayState extends MusicBeatState
 		add(bf);
 
 		bopTweenAnim(scoreThing, 350, 0);
+		bopTweenAnim(diffArrowUp, 350 + 100, 0);
+		bopTweenAnim(diffArrowDown, 350 + 100 + 130, 0);
 		bopTweenAnim(bf, 475, 0.3);
 		bopTweenAnim(cloud, 300, 0.45);
 
@@ -362,14 +382,14 @@ class FreeplayState extends MusicBeatState
 				}
 			}
 
-			if (controls.UI_LEFT_P)
-			{
-				changeDiff(-1);
-				_updateSongLastDifficulty();
-			}
-			else if (controls.UI_RIGHT_P)
+			if (controls.UI_UP_P)
 			{
 				changeDiff(1);
+				_updateSongLastDifficulty();
+			}
+			else if (controls.UI_DOWN_P)
+			{
+				changeDiff(-1);
 				_updateSongLastDifficulty();
 			}
 		}
@@ -612,10 +632,7 @@ class FreeplayState extends MusicBeatState
 
 		lastDifficultyName = Difficulty.getString(curDifficulty, false);
 		var displayDiff:String = Difficulty.getString(curDifficulty);
-		if (Difficulty.list.length > 1)
-			diffText.text = '< ' + displayDiff.toUpperCase() + ' >';
-		else
-			diffText.text = displayDiff.toUpperCase();
+		diffText.text = displayDiff.toUpperCase();
 
 		missingText.visible = false;
 		missingTextBG.visible = false;
