@@ -580,7 +580,7 @@ class FreeplayState extends MusicBeatState
 				trace('CHANGED MOD DIRECTORY, RELOADING STUFF');
 				Paths.freeGraphicsFromMemory();
 			}
-			LoadingState.prepareToSong();
+			#if !debug LoadingState.prepareToSong(); #end
 			LoadingState.loadAndSwitchState(new PlayState());
 			#if !SHOW_LOADING_SCREEN FlxG.sound.music.stop(); #end
 			stopMusicPlay = true;

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="loading_ray.png">
+	<!-- Created with Adobe Animate version 22.0.2.168 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="ray_idle0000" x="5" y="5" width="35" height="57" frameX="-7" frameY="0" frameWidth="45" frameHeight="59"/>
+	<SubTexture name="ray_idle0001" x="5" y="5" width="35" height="57" frameX="-7" frameY="0" frameWidth="45" frameHeight="59"/>
+	<SubTexture name="ray_idle0002" x="5" y="5" width="35" height="57" frameX="-7" frameY="0" frameWidth="45" frameHeight="59"/>
+	<SubTexture name="ray_idle0003" x="5" y="5" width="35" height="57" frameX="-7" frameY="0" frameWidth="45" frameHeight="59"/>
+	<SubTexture name="ray_idle0004" x="78" y="5" width="45" height="52" frameX="0" frameY="-7" frameWidth="45" frameHeight="59"/>
+	<SubTexture name="ray_idle0005" x="78" y="5" width="45" height="52" frameX="0" frameY="-7" frameWidth="45" frameHeight="59"/>
+	<SubTexture name="ray_idle0006" x="78" y="5" width="45" height="52" frameX="0" frameY="-7" frameWidth="45" frameHeight="59"/>
+	<SubTexture name="ray_idle0007" x="78" y="5" width="45" height="52" frameX="0" frameY="-7" frameWidth="45" frameHeight="59"/>
+	<SubTexture name="ray_loaded0000" x="161" y="5" width="40" height="64"/>
+	<SubTexture name="ray_loaded0001" x="161" y="5" width="40" height="64"/>
+	<SubTexture name="ray_loaded0002" x="5" y="107" width="32" height="52" frameX="-6" frameY="-6" frameWidth="40" frameHeight="64"/>
+	<SubTexture name="ray_loaded0003" x="5" y="107" width="32" height="52" frameX="-6" frameY="-6" frameWidth="40" frameHeight="64"/>
+	<SubTexture name="ray_loaded0004" x="75" y="107" width="35" height="57" frameX="-3" frameY="-3" frameWidth="40" frameHeight="64"/>
+	<SubTexture name="ray_loaded0005" x="75" y="107" width="35" height="57" frameX="-3" frameY="-3" frameWidth="40" frameHeight="64"/>
+	<SubTexture name="ray_loaded0006" x="75" y="107" width="35" height="57" frameX="-3" frameY="-3" frameWidth="40" frameHeight="64"/>
+	<SubTexture name="ray_loaded0007" x="75" y="107" width="35" height="57" frameX="-3" frameY="-3" frameWidth="40" frameHeight="64"/>
+</TextureAtlas>

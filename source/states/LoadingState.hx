@@ -1,5 +1,6 @@
 package states;
 
+import flixel.addons.display.FlxBackdrop;
 import lime.app.Future;
 import sys.thread.FixedThreadPool;
 import haxe.Json;
@@ -82,6 +83,13 @@ class LoadingState extends MusicBeatState
 	var pressedTimes:Int = 0;
 	#else
 	var funkay:FlxSprite;
+	var barTop:FlxSprite;
+	var barBottom:FlxSprite;
+	var checker:FlxBackdrop = new FlxBackdrop(Paths.image('loading_screen/checker'), XY);
+	var charLoading:FlxSprite;
+	var txtLoading:FlxSprite;
+	var tvLoading:FlxSprite;
+	var rayLoading:FlxSprite;
 	#end
 
 	#if HSCRIPT_ALLOWED
@@ -90,6 +98,11 @@ class LoadingState extends MusicBeatState
 	override function create()
 	{
 		persistentUpdate = true;
+
+		#if debug new FlxTimer().start(2, (_) -> {
+			LoadingState.prepareToSong();
+		});  #end
+
 		barGroup = new FlxSpriteGroup();
 		add(barGroup);
 
@@ -171,11 +184,77 @@ class LoadingState extends MusicBeatState
 		bg.screenCenter();
 		addBehindBar(bg);
 
-		funkay = new FlxSprite(0, 0).loadGraphic(Paths.image('funkay'));
+		funkay = new FlxSprite(0, 0).makeGraphic(1280, 720, 0xFFC8C0FD);
 		funkay.antialiasing = ClientPrefs.data.antialiasing;
 		funkay.setGraphicSize(0, FlxG.height);
 		funkay.updateHitbox();
 		addBehindBar(funkay);
+		
+		checker.blend = MULTIPLY;
+        checker.velocity.set(10, 10);
+        checker.antialiasing = ClientPrefs.data.antialiasing;
+		checker.alpha = 0.55;
+		add(checker);
+
+		barTop = new FlxSprite().makeGraphic(1280, 80, 0xFF000000);
+		add(barTop);
+
+		barBottom = new FlxSprite().makeGraphic(1280, 80, 0xFF000000);
+		barBottom.y = FlxG.height - barBottom.height;
+		add(barBottom);
+
+		charLoading = new FlxSprite();
+		charLoading.frames = Paths.getSparrowAtlas('loading_screen/loading_char');
+		charLoading.animation.addByPrefix('madera', 'madera', 24, true);
+		charLoading.animation.addByPrefix('foxy', 'foxy', 24, true);
+		charLoading.animation.addByPrefix('gbv', 'gbv', 24, true);
+		charLoading.animation.addByPrefix('hero', 'hero', 24, true);
+		switch(FlxG.random.int(0, 3))
+		{
+			case 0:
+				charLoading.animation.play('madera', true);
+			case 1:
+				charLoading.animation.play('foxy', true);
+			case 2:
+				charLoading.animation.play('gbv', true);
+			case 3:
+				charLoading.animation.play('hero', true);
+		}
+		charLoading.antialiasing = ClientPrefs.data.antialiasing;
+		charLoading.screenCenter();
+		charLoading.y += 10;
+		add(charLoading);
+
+		txtLoading = new FlxSprite();
+		txtLoading.frames = Paths.getSparrowAtlas('loading_screen/loading_Txt');
+		txtLoading.animation.addByPrefix('loading', 'loading', 24, true);
+		txtLoading.animation.addByPrefix('ready', 'ready', 24, true);
+		txtLoading.animation.play('loading', true);
+		txtLoading.antialiasing = ClientPrefs.data.antialiasing;
+		txtLoading.y = 100;
+		txtLoading.screenCenter(X);
+		add(txtLoading);
+
+		tvLoading = new FlxSprite();
+		tvLoading.frames = Paths.getSparrowAtlas('loading_screen/tvloading');
+		tvLoading.animation.addByPrefix('static', 'loadingThing_static', 24, true);
+		tvLoading.animation.addByPrefix('loaded', 'loadingThing_loaded', 24, true);
+		tvLoading.animation.play('static', true);
+		tvLoading.antialiasing = ClientPrefs.data.antialiasing;
+		tvLoading.screenCenter(X);
+		tvLoading.y = 386;
+		add(tvLoading);
+
+		rayLoading = new FlxSprite();
+		rayLoading.frames = Paths.getSparrowAtlas('loading_screen/loading_ray');
+		rayLoading.animation.addByPrefix('idle', 'ray_idle', 24, true);
+		rayLoading.animation.addByPrefix('loaded', 'ray_loaded', 24, false);
+		rayLoading.animation.play('idle', true);
+		rayLoading.antialiasing = ClientPrefs.data.antialiasing;
+		rayLoading.y = tvLoading.y + 160;
+		rayLoading.x = tvLoading.x + 100;
+		add(rayLoading);
+
 		#end
 		super.create();
 
@@ -217,8 +296,10 @@ class LoadingState extends MusicBeatState
 			if (Math.abs(curPercent - intendedPercent) < 0.001) curPercent = intendedPercent;
 			else curPercent = FlxMath.lerp(intendedPercent, curPercent, Math.exp(-elapsed * 15));
 
-			bar.scale.x = barWidth * curPercent;
-			bar.updateHitbox();
+			//bar.scale.x = barWidth * curPercent;
+			//bar.updateHitbox();
+
+			rayLoading.x = tvLoading.x + 280 + (530 * curPercent);
 		}
 		
 		#if HSCRIPT_ALLOWED
@@ -299,6 +380,20 @@ class LoadingState extends MusicBeatState
 			FlxTween.tween(pessy, {y: 10}, 0.65, {ease: FlxEase.quadOut});
 		}
 		#end
+
+		if(canStartSong)
+		{
+			if(controls.ACCEPT)
+			{
+				if (stopMusic && FlxG.sound.music != null)
+					FlxG.sound.music.stop();
+			
+				FlxG.camera.visible = false;
+				MusicBeatState.switchState(target);
+				transitioning = true;
+				finishedLoading = true;
+			}
+		}
 	}
 
 	#if HSCRIPT_ALLOWED
@@ -315,17 +410,15 @@ class LoadingState extends MusicBeatState
 	#end
 	
 	var finishedLoading:Bool = false;
+	var canStartSong:Bool = false;
 	function onLoad()
 	{
 		_loaded();
-
-		if (stopMusic && FlxG.sound.music != null)
-			FlxG.sound.music.stop();
-
-		FlxG.camera.visible = false;
-		MusicBeatState.switchState(target);
-		transitioning = true;
-		finishedLoading = true;
+		txtLoading.animation.play('ready', true);
+		txtLoading.screenCenter(X);
+		tvLoading.animation.play('loaded', true);
+		rayLoading.animation.play('loaded', true);
+		canStartSong = true;
 	}
 
 	static function _loaded()

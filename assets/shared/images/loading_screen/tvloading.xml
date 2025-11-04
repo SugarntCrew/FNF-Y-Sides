@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="tvloading.png">
+	<!-- Created with Adobe Animate version 22.0.2.168 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="loadingThing_loaded0000" x="5" y="5" width="1026" height="268"/>
+	<SubTexture name="loadingThing_loaded0001" x="1069" y="5" width="1026" height="268"/>
+	<SubTexture name="loadingThing_loaded0002" x="2133" y="5" width="1026" height="268"/>
+	<SubTexture name="loadingThing_loaded0003" x="2133" y="5" width="1026" height="268"/>
+	<SubTexture name="loadingThing_loaded0004" x="5" y="311" width="1026" height="268"/>
+	<SubTexture name="loadingThing_loaded0005" x="1069" y="311" width="1026" height="268"/>
+	<SubTexture name="loadingThing_loaded0006" x="5" y="311" width="1026" height="268"/>
+	<SubTexture name="loadingThing_loaded0007" x="5" y="311" width="1026" height="268"/>
+	<SubTexture name="loadingThing_loaded0008" x="5" y="311" width="1026" height="268"/>
+	<SubTexture name="loadingThing_loaded0009" x="5" y="311" width="1026" height="268"/>
+	<SubTexture name="loadingThing_loaded0010" x="5" y="311" width="1026" height="268"/>
+	<SubTexture name="loadingThing_loaded0011" x="5" y="311" width="1026" height="268"/>
+	<SubTexture name="loadingThing_loaded0012" x="5" y="311" width="1026" height="268"/>
+	<SubTexture name="loadingThing_loaded0013" x="5" y="311" width="1026" height="268"/>
+	<SubTexture name="loadingThing_static0000" x="2133" y="311" width="1026" height="268"/>
+	<SubTexture name="loadingThing_static0001" x="2133" y="311" width="1026" height="268"/>
+	<SubTexture name="loadingThing_static0002" x="2133" y="311" width="1026" height="268"/>
+	<SubTexture name="loadingThing_static0003" x="2133" y="311" width="1026" height="268"/>
+	<SubTexture name="loadingThing_static0004" x="5" y="617" width="1026" height="268"/>
+	<SubTexture name="loadingThing_static0005" x="5" y="617" width="1026" height="268"/>
+	<SubTexture name="loadingThing_static0006" x="5" y="617" width="1026" height="268"/>
+	<SubTexture name="loadingThing_static0007" x="5" y="617" width="1026" height="268"/>
+	<SubTexture name="loadingThing_static0008" x="1069" y="617" width="1026" height="268"/>
+	<SubTexture name="loadingThing_static0009" x="1069" y="617" width="1026" height="268"/>
+	<SubTexture name="loadingThing_static0010" x="1069" y="617" width="1026" height="268"/>
+	<SubTexture name="loadingThing_static0011" x="1069" y="617" width="1026" height="268"/>
+</TextureAtlas>
