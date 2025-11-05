@@ -100,6 +100,7 @@
 - [ ] Dialogues (Week 3)
 - [ ] Mechanics (Week 3)
 
+- [ ] New loading screen
 - [x] New volume soundtray
 
 - [ ] Test (SONGCARD)

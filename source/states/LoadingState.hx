@@ -90,6 +90,7 @@ class LoadingState extends MusicBeatState
 	var txtLoading:FlxSprite;
 	var tvLoading:FlxSprite;
 	var rayLoading:FlxSprite;
+	var pressEnter:FlxSprite;
 	#end
 
 	#if HSCRIPT_ALLOWED
@@ -255,6 +256,16 @@ class LoadingState extends MusicBeatState
 		rayLoading.x = tvLoading.x + 100;
 		add(rayLoading);
 
+		pressEnter = new FlxSprite();
+		pressEnter.frames = Paths.getSparrowAtlas('loading_screen/pressEnter');
+		pressEnter.animation.addByPrefix('press', 'press', 24, true);
+		pressEnter.animation.play('press', true);
+		pressEnter.antialiasing = ClientPrefs.data.antialiasing;
+		pressEnter.screenCenter(XY);
+		pressEnter.x += -450;
+		pressEnter.alpha = 0;
+		add(pressEnter);
+
 		#end
 		super.create();
 
@@ -414,7 +425,9 @@ class LoadingState extends MusicBeatState
 	function onLoad()
 	{
 		_loaded();
+		pressEnter.alpha = 1;
 		txtLoading.animation.play('ready', true);
+		txtLoading.updateHitbox();
 		txtLoading.screenCenter(X);
 		tvLoading.animation.play('loaded', true);
 		rayLoading.animation.play('loaded', true);
