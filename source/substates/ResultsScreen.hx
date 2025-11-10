@@ -374,6 +374,8 @@ class ResultsScreen extends MusicBeatSubstate
         switch(sickBeats)
         {
             case 2 | 3:
+                if(getRankName() != 'e') return;
+
                 trace('curbeat $sickBeats');
 
                 FlxTween.cancelTweensOf(PlayState.instance.camOther.zoom);
@@ -388,7 +390,6 @@ class ResultsScreen extends MusicBeatSubstate
                     boyfriend.scale.set(1.05, 1.05);
                     FlxTween.tween(boyfriend, {"scale.x": 1, "scale.y": 1}, 1, {ease: FlxEase.quartOut});
                     FlxTween.angle(boyfriend, -3, 3, 3, {ease: FlxEase.cubeInOut, type: PINGPONG});
-
                     FlxTween.tween(blackBackground, {alpha: getRankName() == 'e' ? 0.25 : 0}, 0.5);
 
                     whiteBackground.alpha = 1;
@@ -402,6 +403,26 @@ class ResultsScreen extends MusicBeatSubstate
                         FlxTween.tween(rank, {"scale.x": 1, "scale.y": 1}, 0.3, {ease: FlxEase.quartInOut});
                     }});
                 }
+            case 5:
+                if(getRankName() == 'e') return;
+
+                startBfAnim();
+
+                boyfriend.scale.set(1.05, 1.05);
+                FlxTween.tween(boyfriend, {"scale.x": 1, "scale.y": 1}, 1, {ease: FlxEase.quartOut});
+                FlxTween.angle(boyfriend, -3, 3, 3, {ease: FlxEase.cubeInOut, type: PINGPONG});
+                FlxTween.tween(blackBackground, {alpha: getRankName() == 'e' ? 0.25 : 0}, 0.5);
+
+                whiteBackground.alpha = 1;
+                FlxTween.tween(whiteBackground, {alpha: 0}, 0.5);
+
+                // rank anim
+                rank.scale.set(0.01, 0.01);
+                rank.alpha = 1;
+
+                FlxTween.tween(rank, {"scale.x": 1.04, "scale.y": 1.04}, 0.3, {ease: FlxEase.quartOut, onComplete: (_) ->{
+                    FlxTween.tween(rank, {"scale.x": 1, "scale.y": 1}, 0.3, {ease: FlxEase.quartInOut});
+                }});
         }
 
         super.beatHit();

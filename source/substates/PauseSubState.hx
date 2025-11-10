@@ -143,6 +143,9 @@ class PauseSubState extends MusicBeatSubstate
 		if (controls.UI_RIGHT_P) changeSelection(1);
 
 		if (controls.ACCEPT && timeElapsedOnMenu > 0.2) {
+			
+			pauseMusic.stop();
+
 			var daSelected:String = menuItems[curSelected];
 			switch (daSelected) {
 				case "Resume":
