@@ -1,5 +1,6 @@
 package states.gallery;
 
+import flixel.util.helpers.FlxBounds;
 import haxe.Json;
 import flixel.addons.display.FlxBackdrop;
 import shaders.WiggleEffect;
@@ -25,6 +26,12 @@ class GalleryStateMusic extends MusicBeatState
         'bopeebo',
         'fresh',
         'dad-battle',
+        'test',
+        'spookeez',
+        'south',
+        'pico',
+        'philly-nice',
+        'blammed'
     ];
 
     public function new()
@@ -260,11 +267,28 @@ class GalleryStateMusic extends MusicBeatState
             if(voices != null)
                 voices.stop();
 
+		    FlxG.sound.list.remove(inst);
+            FlxG.sound.list.remove(voices);
+
             #if debug trace('Changing song to ${musicSongsArray[curSelected]}'); #end
 
             //FlxG.sound.playMusic('assets/songs/${musicSongsArray[curSelected]}/Full.ogg');
-            inst = preloadedInstMap.get(musicSongsArray[curSelected]);
-            voices = preloadedVoicesMap.get(musicSongsArray[curSelected]);
+            //inst = preloadedInstMap.get(musicSongsArray[curSelected]);
+            //voices = preloadedVoicesMap.get(musicSongsArray[curSelected]);
+
+            inst = new FlxSound();
+            inst.loadEmbedded('assets/songs/${musicSongsArray[curSelected]}/Inst.ogg');
+
+            voices = new FlxSound();
+            voices.loadEmbedded('assets/songs/${musicSongsArray[curSelected]}/Voices.ogg');
+            
+            #if debug
+            trace('INST MAP: ' + preloadedInstMap);
+            trace('VOICES MAP: ' + preloadedVoicesMap);
+
+            trace('INST ' + inst);
+            trace('VOICES ' + voices);
+            #end
             
 		    FlxG.sound.list.add(inst);
 		    FlxG.sound.list.add(voices);
