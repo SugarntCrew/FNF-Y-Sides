@@ -254,8 +254,11 @@ class GalleryStateMusic extends MusicBeatState
 
         if(FileSystem.exists('assets/songs/${musicSongsArray[curSelected]}/Inst.ogg') || FileSystem.exists('assets/songs/${musicSongsArray[curSelected]}/Voices.ogg'))
         {
-            FlxG.sound.music.stop();
-            voices.stop();
+            if(FlxG.sound.music != null)
+                FlxG.sound.music.stop();
+
+            if(voices != null)
+                voices.stop();
 
             #if debug trace('Changing song to ${musicSongsArray[curSelected]}'); #end
 
