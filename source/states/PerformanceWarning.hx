@@ -1,5 +1,6 @@
 package states;
 
+import states.gallery.GalleryStateMusic;
 import flixel.FlxSubState;
 
 import flixel.effects.FlxFlicker;
@@ -16,6 +17,8 @@ class PerformanceWarning extends MusicBeatState
 	override function create()
 	{
 		super.create();
+
+		GalleryStateMusic.preloadMusic();
 
 		bg = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(bg);

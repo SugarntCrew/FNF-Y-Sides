@@ -21,7 +21,7 @@ class GalleryStateMusic extends MusicBeatState
 	var wiggleBg:WiggleEffect = null;
 
     var musicSongsGrp:FlxTypedGroup<GalleryMusicObject>;
-    var musicSongsArray:Array<String> = [
+    static var musicSongsArray:Array<String> = [
         'tutorial',
         'bopeebo',
         'fresh',
@@ -117,10 +117,10 @@ class GalleryStateMusic extends MusicBeatState
         changeSelect(0, true);
     }
 
-    var preloadedInstMap:Map<String, FlxSound> = new Map<String, FlxSound>();
-    var preloadedVoicesMap:Map<String, FlxSound> = new Map<String, FlxSound>();
+    static var preloadedInstMap:Map<String, FlxSound> = new Map<String, FlxSound>();
+    static var preloadedVoicesMap:Map<String, FlxSound> = new Map<String, FlxSound>();
 
-    function preloadMusic()
+    public static function preloadMusic()
     {
         for(song in musicSongsArray)
         {
