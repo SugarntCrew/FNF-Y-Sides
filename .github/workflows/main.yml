@@ -106,9 +106,9 @@ jobs:
         run: echo "${{github.run_id}}" > VERSION
       - name: Setup HXCPP dev commit
         run: |
-          cd .haxelib/hxcpp/git/tools/hxcpp
+          mkdir .haxelib/hxcpp/git/tools/hxcpp
           haxe compile.hxml
-          cd ../../../../..
+          mkdir ../../../../..
       - name: Compile
         run: haxelib run lime build mac -verbose -final -release
       - name: Publish Artifact
