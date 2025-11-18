@@ -62,6 +62,7 @@
 - [x] Girlfriend (SPOOKY VERSION)
 - [x] Boyfriend (SPOOKY VERSION)
 - [x] Boyfriend Death (SPOOKY VERSION)
+- [x] Boyfriend Death (PICO VERSION)
 - [x] Spooky kids
 - [ ] Monster
 - [x] Pico
@@ -96,12 +97,6 @@
 
 - [ ] Cutscene???
 
-- [ ] Dialogues (Week 2)
-- [ ] Mechanics (Week 2)
-
-- [ ] Dialogues (Week 3)
-- [ ] Mechanics (Week 3)
-
 - [x] New loading screen
 - [x] New volume soundtray
 
@@ -109,7 +104,7 @@
 - [x] Tutorial (SONGCARD)
 - [x] Bopeebo (SONGCARD)
 - [x] Fresh (SONGCARD)
-- [ ] Dad Battle (SONGCARD)
+- [x] Dad Battle (SONGCARD)
 - [ ] Spookeez (SONGCARD)
 - [ ] South (SONGCARD)
 - [ ] Monster (SONGCARD)
