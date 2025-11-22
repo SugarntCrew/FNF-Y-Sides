@@ -97,17 +97,17 @@
 - [x] New loading screen
 - [x] New volume soundtray
 
-- [ ] Test (SONGCARD)
+- [x] Test (SONGCARD)
 - [x] Tutorial (SONGCARD)
 - [x] Bopeebo (SONGCARD)
 - [x] Fresh (SONGCARD)
 - [x] Dad Battle (SONGCARD)
-- [ ] Spookeez (SONGCARD)
-- [ ] South (SONGCARD)
+- [x] Spookeez (SONGCARD)
+- [x] South (SONGCARD)
 - [ ] Monster (SONGCARD)
-- [ ] Pico (SONGCARD)
-- [ ] Philly Nice (SONGCARD)
-- [ ] Blammed (SONGCARD)
+- [x] Pico (SONGCARD)
+- [x] Philly Nice (SONGCARD)
+- [x] Blammed (SONGCARD)
 
 ## SPECIFIC
 
