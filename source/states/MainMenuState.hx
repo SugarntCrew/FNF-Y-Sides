@@ -184,6 +184,8 @@ class MainMenuState extends MusicBeatState
 		}
 
 		if(OptionsState.comingFromOptions) {
+			FlxG.sound.playMusic(Paths.music('freakyMenu'));
+			FlxG.sound.music.fadeIn(1);
 			OptionsState.comingFromOptions = false;
 			actualRightColumn = true;
 		}
@@ -515,6 +517,7 @@ class MainMenuState extends MusicBeatState
 
 	function transitionToOptions()
 	{
+		FlxG.sound.music.fadeOut(0.65);
 		new FlxTimer().start(0.4, function(tmr:FlxTimer)
 		{
 			FlxTween.cancelTweensOf(characters);

@@ -72,6 +72,9 @@ class OptionsState extends MusicBeatState
 		DiscordClient.changePresence("Options Menu", null);
 		#end
 
+		FlxG.sound.playMusic(Paths.music('optionsMenu'));
+		FlxG.sound.music.fadeIn(1);
+
 		var bg:FlxSprite = new FlxSprite().makeGraphic(1280, 720, 0xFFBFB4F1);
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		bg.updateHitbox();
@@ -292,6 +295,7 @@ class OptionsState extends MusicBeatState
 
 		if (controls.BACK)
 		{
+			FlxG.sound.music.fadeOut(0.65);
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			if(onPlayState)
 			{
