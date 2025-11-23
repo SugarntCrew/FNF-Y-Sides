@@ -89,6 +89,7 @@ class CreditsStateYSides extends MusicBeatState
 		add(rightArrow);
 
         changeSelection();
+		super.create();
 	}
 
 	var psychScale:Float = 1;
