@@ -14,17 +14,19 @@ class CreditsStateYSides extends MusicBeatState
     var developers:Array<Dynamic> = [
         ['gBv2209',         'gbv',      ['Director', 'Concept Artist', 'Artist', 'Animator', 'Musician', 'Charter', 'Coder'], 		[['yt', 'https://www.youtube.com/@gBv2209'], ['x', 'https://x.com/gbv2209']], 0xFF2F6662],
         ['Mr. Madera',      'madera',   ['Director', 'Main Coder', 'Charter'], 						                                [['yt', 'https://www.youtube.com/@mrmadera1235'], ['x', 'https://x.com/MrMadera625']], 0xFF8ACCE1],
-        ['SFoxyDAC',        'foxy',     ['Co-Director', 'Artist', 'Animator'], 					                                    [['yt', 'https://www.youtube.com/@SFoxyDAC'], ['x', 'https://x.com/SFoxyDAC']], 0xFFDC7D6F],
-        ['Zhadnii',         'ema',  ['Musician'], 					                                                [['yt', 'https://youtube.com/@zhadnii_']], 0xFF363676],
+        ['Heromax',         'hero',     ['Co-Director', 'Concept Artist', 'Artist', 'Charter'], 			                            [['x', 'https://x.com/heromax_2498']], 0xFF424452],
+		['SFoxyDAC',        'foxy',     ['Co-Director', 'Artist', 'Animator'], 					                                    [['yt', 'https://www.youtube.com/@SFoxyDAC'], ['x', 'https://x.com/SFoxyDAC']], 0xFFDC7D6F],
+        ['ItsTapiiii',      'tapi',     ['Co-Director', 'Musician'], 					                                                [['yt', 'https://www.youtube.com/@ItsTapiiii']], 0xFF363676],
+		['Zhadnii',         'ema',  ['Musician'], 					                                                [['yt', 'https://youtube.com/@zhadnii_']], 0xFF3A3A75],
         ['FlashMan07',      'flash',    ['Musician', 'Concept Artist', 'Artist'],                                       [['yt', 'https://www.youtube.com/@FlashMan07']], 0xFF912197],
-        ['Heromax',         'hero',     ['Concept Artist', 'Artist', 'Charter'], 			                            [['x', 'https://x.com/heromax_2498']], 0xFF424452],
         ['Snowlui',         'snowlui',  ['Musician'], 			                            							[['yt', 'https://www.youtube.com/channel/UCSt4Fyu2syVMeGBHeZaWzyA'], ['x', 'https://x.com/Snowlui0831']], 0xFF9C0053],
-        ['ItsTapiiii',      'tapi',     ['Musician'], 					                                                [['yt', 'https://www.youtube.com/@ItsTapiiii']], 0xFF363676],
         ['EmmaPSX',      	'emma',     ['Charter'], 					                                                [['yt', 'https://www.youtube.com/channel/UCbTvTX7u7sYJfS5fIriLc_g'], ['x', 'https://x.com/emmapsx20']], 0xFFB56134],
-        ['E1000',           'emil',    ['Artist', 'Charter'], 					                                        [['yt', 'https://www.youtube.com/@E1000YT/videos'], ['x', 'https://x.com/E1000TWOF ']], 0xFF1A8758]
+        ['E1000MC',           'emil',    ['Artist', 'Charter'], 					                                        [['yt', 'https://www.youtube.com/@E1000YT/videos'], ['x', 'https://x.com/E1000TWOF ']], 0xFF1A8758]
     ];
 
 	var bg:FlxSprite;
+
+	var backgroundGradientBottom:FlxSprite;
 
     var currentCharacter:FlxSprite;
     var devInfo:InfoAboutPerson;
@@ -41,10 +43,12 @@ class CreditsStateYSides extends MusicBeatState
 	var leftArrow:Alphabet;
 	var rightArrow:Alphabet;
 
+	var transition:FlxSprite;
+
 	override function create() 
 	{
-		FlxTransitionableState.skipNextTransIn = false;
-		FlxTransitionableState.skipNextTransOut = false;
+		FlxTransitionableState.skipNextTransIn = true;
+		FlxTransitionableState.skipNextTransOut = true;
 
 		bg = new FlxSprite(-80).makeGraphic(1280, 720, 0xFFBFB4F1);
 		bg.antialiasing = ClientPrefs.data.antialiasing;
@@ -53,6 +57,15 @@ class CreditsStateYSides extends MusicBeatState
 		bg.screenCenter();
 		bg.scrollFactor.set();
 		add(bg);
+
+		backgroundGradientBottom = new FlxSprite();
+		backgroundGradientBottom.loadGraphic(Paths.image('titleState/gradientBottom'));
+		backgroundGradientBottom.antialiasing = ClientPrefs.data.antialiasing;
+		backgroundGradientBottom.scale.set(1, 1.3);
+		backgroundGradientBottom.blend = ADD;
+		backgroundGradientBottom.alpha = 0.38;
+		backgroundGradientBottom.y = FlxG.height - backgroundGradientBottom.height;
+		add(backgroundGradientBottom);
 
 		icons = new FlxBackdrop(Paths.image('mainmenu/icons'), XY);
 		icons.velocity.set(10, 10);
@@ -90,6 +103,13 @@ class CreditsStateYSides extends MusicBeatState
 
         changeSelection();
 		super.create();
+
+		transition = new FlxSprite(-650, 0);
+		transition.antialiasing = ClientPrefs.data.antialiasing;
+		transition.loadGraphic(Paths.image('transition'));
+		add(transition);
+
+		FlxTween.tween(transition, {x: -2100}, 1, {ease: FlxEase.quartOut});
 	}
 
 	var psychScale:Float = 1;
@@ -101,6 +121,9 @@ class CreditsStateYSides extends MusicBeatState
 
 			FlxG.sound.play(Paths.sound('cancelMenu'));
 			wentBack = true;
+
+			transition.x = FlxG.width;
+			FlxTween.tween(transition, {x: -650}, 1, {ease: FlxEase.quartOut});
 		
 			backFromCredits = true;
 			watchingCredits = false;
@@ -129,8 +152,8 @@ class CreditsStateYSides extends MusicBeatState
 		if(FlxG.keys.justPressed.TAB)
 		{
 			watchingCredits = false;
-			FlxTransitionableState.skipNextTransIn = false;
-			FlxTransitionableState.skipNextTransOut = false;
+			FlxTransitionableState.skipNextTransIn = true;
+			FlxTransitionableState.skipNextTransOut = true;
 
 			MusicBeatState.switchState(new CreditsState());	
 		}
@@ -198,7 +221,7 @@ class InfoAboutPerson extends FlxSpriteGroup
 		{
 			var rolTxt = new Alphabet(0, 0, rols[i], true);
 			rolTxt.setScale(0.7);
-			if(rols[i] == 'Director' || rols[i] == 'Co-Director') rolTxt.color = 0xFFECD032;
+			if(rols[i] == 'Director' || rols[i] == 'Co-Director') rolTxt.color = 0xFFFFDA8F;
 			rolTxt.y = personName.y + personName.height + 30 + ((rolTxt.height + 10) * i);
 			rolTxt.scrollFactor.set();
 			rolTxt.screenCenter(X);
@@ -244,7 +267,7 @@ class InfoAboutPerson extends FlxSpriteGroup
 		{
 			var rolTxt = new Alphabet(0, 0, rols[i], true);
 			rolTxt.setScale(0.7);
-			if(rols[i] == 'Director' || rols[i] == 'Co-Director') rolTxt.color = 0xFFECD032;
+			if(rols[i] == 'Director' || rols[i] == 'Co-Director') rolTxt.color = 0xFFFFDA8F;
 			rolTxt.y = personName.y + personName.height + 30 + ((rolTxt.height + 10) * i);
 			rolTxt.scrollFactor.set();
 			rolTxt.screenCenter(X);

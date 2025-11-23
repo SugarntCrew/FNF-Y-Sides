@@ -163,12 +163,15 @@ class TitleState extends MusicBeatState
 		icons.antialiasing = ClientPrefs.data.antialiasing;
 
 		backgroundGradientTop = new FlxSprite();
+		backgroundGradientTop.scale.set(1, 1.3);
+		backgroundGradientTop.y = -100;
 		backgroundGradientTop.loadGraphic(Paths.image('titleState/gradientTop'));
 		backgroundGradientTop.antialiasing = ClientPrefs.data.antialiasing;
 
 		backgroundGradientBottom = new FlxSprite();
 		backgroundGradientBottom.loadGraphic(Paths.image('titleState/gradientBottom'));
 		backgroundGradientBottom.antialiasing = ClientPrefs.data.antialiasing;
+		backgroundGradientBottom.scale.set(1, 1.3);
 		backgroundGradientBottom.blend = ADD;
 		backgroundGradientBottom.alpha = 0.38;
 		backgroundGradientBottom.y = FlxG.height - backgroundGradientBottom.height;

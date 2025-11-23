@@ -46,6 +46,8 @@ class MainMenuState extends MusicBeatState
 	var characters:FlxSprite;
 	var charactersWhite:FlxSprite;
 	var camFollow:FlxObject;
+	var transition:FlxSprite;
+	var backgroundGradientBottom:FlxSprite;
 
 	static var showOutdatedWarning:Bool = true;
 	override function create()
@@ -81,6 +83,15 @@ class MainMenuState extends MusicBeatState
 		magenta.screenCenter();
 		magenta.visible = false;
 		add(magenta);
+
+		backgroundGradientBottom = new FlxSprite();
+		backgroundGradientBottom.loadGraphic(Paths.image('titleState/gradientBottom'));
+		backgroundGradientBottom.antialiasing = ClientPrefs.data.antialiasing;
+		backgroundGradientBottom.scale.set(1, 1.3);
+		backgroundGradientBottom.blend = ADD;
+		backgroundGradientBottom.alpha = 0.38;
+		backgroundGradientBottom.y = FlxG.height - backgroundGradientBottom.height;
+		add(backgroundGradientBottom);
 		
 		icons = new FlxBackdrop(Paths.image('mainmenu/icons'), XY);
 		icons.velocity.set(10, 10);
@@ -189,6 +200,12 @@ class MainMenuState extends MusicBeatState
 			OptionsState.comingFromOptions = false;
 			actualRightColumn = true;
 		}
+
+		transition = new FlxSprite(FlxG.width, 0);
+		transition.antialiasing = ClientPrefs.data.antialiasing;
+		transition.loadGraphic(Paths.image('transition'));
+		transition.scale.set(1, 1.2);
+		add(transition);
 
 		//FlxG.camera.follow(camFollow, null, 0.15);
 	}
@@ -497,10 +514,11 @@ class MainMenuState extends MusicBeatState
 	{
 		new FlxTimer().start(0.4, function(tmr:FlxTimer)
 		{
+			FlxTween.tween(transition, {x: -650}, 1, {ease: FlxEase.quartOut});
 			FlxTween.cancelTweensOf(characters);
 			FlxTween.tween(characters, {alpha: 0, y: characters.y + 10}, 0.35, {ease: FlxEase.quartIn, onComplete: function(twn:FlxTween)
 			{
-				new FlxTimer().start(0.15, function(tmr:FlxTimer)
+				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
 					#if ACHIEVEMENTS_ALLOWED
 						FlxTransitionableState.skipNextTransIn = true;

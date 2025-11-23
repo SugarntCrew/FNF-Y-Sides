@@ -54,6 +54,7 @@ class FreeplayState extends MusicBeatState
 	var cloud:FlxSprite;
 	var currentIcon:FlxSprite;
 	var scoreThing:FlxSprite;
+	var backgroundGradientBottom:FlxSprite;
 
 	var player:MusicPlayer;
 
@@ -119,6 +120,15 @@ class FreeplayState extends MusicBeatState
 		bg.alpha = 0;
 		add(bg);
 		bg.screenCenter();
+
+		backgroundGradientBottom = new FlxSprite();
+		backgroundGradientBottom.loadGraphic(Paths.image('titleState/gradientBottom'));
+		backgroundGradientBottom.antialiasing = ClientPrefs.data.antialiasing;
+		backgroundGradientBottom.scale.set(1, 1.3);
+		backgroundGradientBottom.blend = ADD;
+		backgroundGradientBottom.alpha = 0.38;
+		backgroundGradientBottom.y = FlxG.height - backgroundGradientBottom.height;
+		add(backgroundGradientBottom);
 
 		FlxTween.tween(bg, {alpha: 1}, 0.6, {ease: FlxEase.quartOut});
 
