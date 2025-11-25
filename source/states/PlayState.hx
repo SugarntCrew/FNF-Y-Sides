@@ -2885,6 +2885,7 @@ class PlayState extends MusicBeatState
 		if(isDad)
 		{
 			if(dad == null) return;
+			trace('CAMERA POINTING TO PLAYER 3: $pointsTo3Player');
 			if(pointsTo3Player)
 			{
 				if(player3 == null) return;
@@ -3583,16 +3584,36 @@ class PlayState extends MusicBeatState
 		else if(!note.noAnimation)
 		{
 			var char:Character = dad;
-			pointsTo3Player = false;
+
+			var detectedThirdPlayerNote:Bool = false;
+			var detectedOpponentNote:Bool = false;
+			for(secNote in SONG.notes[curSection].sectionNotes)
+			{
+				// trace(secNote);
+				if(secNote[3] == "Third Player Note") detectedThirdPlayerNote = true;
+				if(secNote[3] != "Third Player Note" && secNote[1] < 8 && secNote[1] >= 4) detectedOpponentNote = true;
+			}
+
+			if(player3 != null)
+			{
+				if(!note.isSustainNote && detectedOpponentNote && detectedThirdPlayerNote) pointsTo3Player = true;
+				else if(!note.isSustainNote && note.thirdPlayerNote) pointsTo3Player = true;
+				else if(!note.isSustainNote) pointsTo3Player = false;
+			}
+			else pointsTo3Player = false;
 
 			if(note.thirdPlayerNote && player3 != null) 
 			{
-				if(!note.isSustainNote) pointsTo3Player = true;
 				char = player3;
 			}
 
-			if(iconP3 != null && !note.isSustainNote) swapIcons(note.thirdPlayerNote);
-
+			trace('$detectedOpponentNote / $detectedThirdPlayerNote');
+			if(iconP3 != null)
+			{
+				if(!note.isSustainNote && detectedOpponentNote && detectedThirdPlayerNote) swapBothIcons(); //both
+				else if(!note.isSustainNote) swapIcons(note.thirdPlayerNote);
+			}
+			
 			var animToPlay:String = singAnimations[Std.int(Math.abs(Math.min(singAnimations.length-1, note.noteData)))] + note.animSuffix;
 			if(note.gfNote) char = gf;
 
@@ -3624,7 +3645,23 @@ class PlayState extends MusicBeatState
 	
 				if(!SONG.notes[curSection].mustHitSection)
 				{
-					if(note.thirdPlayerNote)
+					if(detectedOpponentNote && detectedThirdPlayerNote)
+					{
+						switch(animToPlay)
+						{
+							case 'singLEFT':
+								camFollow.setPosition(player3.getMidpoint().x + 150 + (player3.cameraPosition[0] + opponentCameraOffset[0]) - cameraOffset, player3.getMidpoint().y - 100 + (player3.cameraPosition[1] + opponentCameraOffset[1]));
+							case 'singRIGHT':
+								camFollow.setPosition(player3.getMidpoint().x + 150 + (player3.cameraPosition[0] + opponentCameraOffset[0]) + cameraOffset, player3.getMidpoint().y - 100 + (player3.cameraPosition[1] + opponentCameraOffset[1]));
+							case 'singDOWN':
+								camFollow.setPosition(player3.getMidpoint().x + 150 + (player3.cameraPosition[0] + opponentCameraOffset[0]), player3.getMidpoint().y - 100 + (player3.cameraPosition[1] + opponentCameraOffset[1] + cameraOffset));
+							case 'singUP':
+								camFollow.setPosition(player3.getMidpoint().x + 150 + (player3.cameraPosition[0] + opponentCameraOffset[0]), player3.getMidpoint().y - 100 + (player3.cameraPosition[1] + opponentCameraOffset[1] - cameraOffset));
+							default:
+								camFollow.setPosition(player3.getMidpoint().x + 150 + (player3.cameraPosition[0] + opponentCameraOffset[0]), player3.getMidpoint().y - 100 + (player3.cameraPosition[1] + opponentCameraOffset[1]));
+						}
+					}
+					else if(note.thirdPlayerNote)
 					{
 						switch(animToPlay)
 						{
@@ -3797,10 +3834,13 @@ class PlayState extends MusicBeatState
 	}
 
 	var swappedIcons:Null<Bool> = null;
+	var singingBoth:Null<Bool> = false;
 	function swapIcons(player3Sings:Bool)
 	{
 		if(swappedIcons == player3Sings) return; // already swapped
 		swappedIcons = player3Sings;
+
+		singingBoth = false; // reset both loop
 
 		var time:Float = 0.1 / playbackRate;
 		var noPlayableIconScale:Float = 0.7;
@@ -3857,6 +3897,41 @@ class PlayState extends MusicBeatState
 			FlxTween.tween(iconP3, {x: healthBar.x - iconOffset - 150}, time, {ease: FlxEase.quartOut});
 			FlxTween.tween(iconP3, {y: healthBar.y + (healthBar.height / 2) - 45}, time, {ease: FlxEase.quartOut});
 		}
+	}
+
+	function swapBothIcons()
+	{
+		if(singingBoth) return; //already both singing
+		singingBoth = true;
+
+		trace('Both icons!');
+
+		var time:Float = 0.1 / playbackRate;
+		var noPlayableIconScale:Float = 0.7;
+
+		iconP2.bops = true;
+		uiGroup.remove(iconP2);
+		uiGroup.insert(7, iconP2);
+
+		FlxTween.cancelTweensOf(healthBar.leftBar);
+		var dadColor = FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]);
+		FlxTween.color(healthBar.leftBar, time, healthBar.leftBar.color, dadColor, {ease: FlxEase.quartOut});
+
+		FlxTween.cancelTweensOf(iconP2);
+		FlxTween.color(iconP2, time, 0xFF666666, 0xFFFFFFFF, {ease: FlxEase.quartOut});
+		FlxTween.tween(iconP2, {"scale.x": 1, "scale.y": 1}, time, {ease: FlxEase.quartOut});
+		FlxTween.tween(iconP2, {x: healthBar.x - iconOffset - 105}, time, {ease: FlxEase.quartOut});
+		FlxTween.tween(iconP2, {y: healthBar.y + (healthBar.height / 2) - 70}, time, {ease: FlxEase.quartOut});
+
+		iconP3.bops = false;
+		uiGroup.remove(iconP3);
+		uiGroup.insert(6, iconP3);
+
+		FlxTween.cancelTweensOf(iconP3);
+		FlxTween.color(iconP3, time, iconP3.color, 0xFFFFFFFF, {ease: FlxEase.quartOut});
+		FlxTween.tween(iconP3, {"scale.x": noPlayableIconScale, "scale.y": noPlayableIconScale}, time, {ease: FlxEase.quartOut});
+		FlxTween.tween(iconP3, {x: healthBar.x - iconOffset - 150}, time, {ease: FlxEase.quartOut});
+		FlxTween.tween(iconP3, {y: healthBar.y + (healthBar.height / 2) - 45}, time, {ease: FlxEase.quartOut});
 	}
 
 	public function invalidateNote(note:Note):Void {
