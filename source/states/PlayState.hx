@@ -4006,6 +4006,51 @@ class PlayState extends MusicBeatState
 					case 160:
 						FlxTween.tween(songCard, {alpha: 0, y: songCard.y - 10}, 0.3);
 				}
+			case 'Spookeez':
+				switch(curStep)
+				{
+					case 1:
+						songCard.y += 10;
+						FlxTween.tween(songCard, {alpha: 1, y: songCard.y - 10}, 0.3);
+					case 32:
+						FlxTween.tween(songCard, {alpha: 0, y: songCard.y - 10}, 0.3);
+				}
+			case 'South':
+				switch(curStep)
+				{
+					case 1:
+						songCard.y += 10;
+						FlxTween.tween(songCard, {alpha: 1, y: songCard.y - 10}, 0.3);
+					case 64:
+						FlxTween.tween(songCard, {alpha: 0, y: songCard.y - 10}, 0.3);
+				}
+			case 'Pico':
+				switch(curStep)
+				{
+					case 1:
+						songCard.y += 10;
+						FlxTween.tween(songCard, {alpha: 1, y: songCard.y - 10}, 0.3);
+					case 32:
+						FlxTween.tween(songCard, {alpha: 0, y: songCard.y - 10}, 0.3);
+				}
+			case 'Philly Nice':
+				switch(curStep)
+				{
+					case 1:
+						songCard.y += 10;
+						FlxTween.tween(songCard, {alpha: 1, y: songCard.y - 10}, 0.3);
+					case 64:
+						FlxTween.tween(songCard, {alpha: 0, y: songCard.y - 10}, 0.3);
+				}
+			case 'Blammed':
+				switch(curStep)
+				{
+					case 1:
+						songCard.y += 10;
+						FlxTween.tween(songCard, {alpha: 1, y: songCard.y - 10}, 0.3);
+					case 64:
+						FlxTween.tween(songCard, {alpha: 0, y: songCard.y - 10}, 0.3);
+				}
 		}
 
 		lastStepHit = curStep;
