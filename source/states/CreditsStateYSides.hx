@@ -21,7 +21,8 @@ class CreditsStateYSides extends MusicBeatState
         ['FlashMan07',      'flash',    ['Musician', 'Concept Artist', 'Artist'],                                       [['yt', 'https://www.youtube.com/@FlashMan07']], 0xFF912197],
         ['Snowlui',         'snowlui',  ['Musician'], 			                            							[['yt', 'https://www.youtube.com/channel/UCSt4Fyu2syVMeGBHeZaWzyA'], ['x', 'https://x.com/Snowlui0831']], 0xFF9C0053],
         ['EmmaPSX',      	'emma',     ['Charter'], 					                                                [['yt', 'https://www.youtube.com/channel/UCbTvTX7u7sYJfS5fIriLc_g'], ['x', 'https://x.com/emmapsx20']], 0xFFB56134],
-        ['E1000MC',           'emil',    ['Artist', 'Charter'], 					                                        [['yt', 'https://www.youtube.com/@E1000YT/videos'], ['x', 'https://x.com/E1000TWOF ']], 0xFF1A8758]
+        ['E1000MC',           'emil',    ['Artist', 'Charter'], 					                                        [['yt', 'https://www.youtube.com/@E1000YT/videos'], ['x', 'https://x.com/E1000TWOF ']], 0xFF1A8758],
+		['Saturn',           'sas',    ['- Me composer... -', 'drawer', 'I not cook'],                                                             [['yt', 'https://youtu.be/-ThnaxyC6J8?si=1IuB_kx1GUeJ-4Ad'], ['x', 'https://youtu.be/MvRARbFMCBI?si=bfBbcig20FQwUgGL']], 0xFF45725F]
     ];
 
 	var bg:FlxSprite;
@@ -44,6 +45,7 @@ class CreditsStateYSides extends MusicBeatState
 	var rightArrow:Alphabet;
 
 	var transition:FlxSprite;
+	var callMeAGoodBOOOY:FlxSound;
 
 	override function create() 
 	{
@@ -110,6 +112,12 @@ class CreditsStateYSides extends MusicBeatState
 		add(transition);
 
 		FlxTween.tween(transition, {x: -2100}, 1, {ease: FlxEase.quartOut});
+
+		callMeAGoodBOOOY = new FlxSound();
+		callMeAGoodBOOOY.loadEmbedded(Paths.sound('call-me-a-good-boy'), true);
+		FlxG.sound.list.add(callMeAGoodBOOOY);
+		callMeAGoodBOOOY.volume = 0;
+		callMeAGoodBOOOY.play();
 	}
 
 	var psychScale:Float = 1;
@@ -158,6 +166,9 @@ class CreditsStateYSides extends MusicBeatState
 			MusicBeatState.switchState(new CreditsState());	
 		}
 
+		if(developers[curSelected][0] == 'Saturn') callMeAGoodBOOOY.volume = 1;
+		else callMeAGoodBOOOY.volume = 0;
+
 		FlxG.mouse.visible = true;
 	}
 
@@ -165,6 +176,8 @@ class CreditsStateYSides extends MusicBeatState
     {
 		FlxG.sound.play(Paths.sound('scrollMenu'));
         curSelected = FlxMath.wrap(curSelected + change, 0, developers.length - 1);
+
+		if(developers[curSelected][0] == 'Saturn') FlxG.sound.play(Paths.sound('sosoasoas'));
 
 		FlxTween.cancelTweensOf(currentCharacter);
 
