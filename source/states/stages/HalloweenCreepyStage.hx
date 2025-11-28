@@ -2,6 +2,7 @@ package states.stages;
 
 import openfl.filters.ShaderFilter;
 import shaders.BloomShader;
+import shaders.ChromaticAberration;
 import shaders.DropShadowShader;
 
 class HalloweenCreepyStage extends BaseStage
@@ -41,6 +42,14 @@ class HalloweenCreepyStage extends BaseStage
 
 		var shaderFilter = new ShaderFilter(bloom);
 		FlxG.camera.filters = [shaderFilter];
+
+		var chromaticAberration = new ChromaticAberration();
+		chromaticAberration.rOffset.value = [0.002];
+		chromaticAberration.gOffset.value = [0.0];
+		chromaticAberration.bOffset.value = [-0.002];
+
+		var shaderFilter2 = new ShaderFilter(chromaticAberration);
+		FlxG.camera.filters.push(shaderFilter2);
 
 		// lights on characters
 		var rimBF = new DropShadowShader();
