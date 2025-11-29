@@ -6,6 +6,7 @@ import objects.Character;
 class PicoStage extends BaseStage
 {
     var guards:BGSprite;
+    var signs:BGSprite;
 
 	override function create()
 	{
@@ -40,11 +41,28 @@ class PicoStage extends BaseStage
         lights2.alpha = 0.5;
 		add(lights2);
 
-		var signs:BGSprite = new BGSprite('signs', -1168, -959, 1.5, 1.5);
+		signs = new BGSprite('signs', -1168, -959, 1.5, 1.5);
         signs.alpha = 0.95;
         signs.updateHitbox();
         signs.antialiasing = ClientPrefs.data.antialiasing;
 		add(signs);
+    }
+
+    var signsVisible:Bool = true;
+    override function update(elapsed:Float)
+    {
+        if(game.camGame.zoom > 0.65 && signsVisible) {
+            signsVisible = false;
+
+            FlxTween.cancelTweensOf(signs);
+            FlxTween.tween(signs, {alpha: 0}, 0.5, {ease: FlxEase.circInOut});
+        }
+        else if(game.camGame.zoom <= 0.65 && !signsVisible) {
+            signsVisible = true;
+
+            FlxTween.cancelTweensOf(signs);
+            FlxTween.tween(signs, {alpha: 0}, 0.5, {ease: FlxEase.circInOut});
+        }
     }
 
     override function beatHit()
