@@ -7,8 +7,9 @@ import shaders.WiggleEffect;
 
 class CreditsStateYSides extends MusicBeatState
 {
-	public static var watchingCredits:Bool = false;
+	public var canGoBack:Bool = false;
 	public static var backFromCredits:Bool = false;
+	public static var creditsTransition:Bool = false;
 	var wentBack:Bool = false;
 
     var developers:Array<Dynamic> = [
@@ -116,7 +117,10 @@ class CreditsStateYSides extends MusicBeatState
 		transition.loadGraphic(Paths.image('transition'));
 		add(transition);
 
-		FlxTween.tween(transition, {x: -2100}, 1, {ease: FlxEase.quartOut});
+		FlxTween.tween(transition, {x: -2100}, 1, {ease: FlxEase.quartOut, onComplete: function(twn:FlxTween)
+		{
+			canGoBack = true;
+		}});
 
 		callMeAGoodBOOOY = new FlxSound();
 		callMeAGoodBOOOY.loadEmbedded(Paths.sound('call-me-a-good-boy'), true);
@@ -130,7 +134,7 @@ class CreditsStateYSides extends MusicBeatState
 
 		super.update(elapsed);
 
-		if (controls.BACK && !watchingCredits) {
+		if (controls.BACK && canGoBack) {
 
 			FlxG.sound.music.fadeOut(0.65);
 			FlxG.sound.play(Paths.sound('cancelMenu'));
@@ -140,7 +144,8 @@ class CreditsStateYSides extends MusicBeatState
 			FlxTween.tween(transition, {x: -650}, 1, {ease: FlxEase.quartOut});
 		
 			backFromCredits = true;
-			watchingCredits = false;
+			creditsTransition = true;
+			canGoBack = false;
             
 			MainMenuState.iconsPos.insert(0, icons.x);
 			MainMenuState.iconsPos.insert(1, icons.y);
@@ -168,7 +173,6 @@ class CreditsStateYSides extends MusicBeatState
 
 		if(FlxG.keys.justPressed.TAB)
 		{
-			watchingCredits = false;
 			FlxTransitionableState.skipNextTransIn = true;
 			FlxTransitionableState.skipNextTransOut = true;
 

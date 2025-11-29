@@ -159,6 +159,7 @@ class MainMenuState extends MusicBeatState
 		else if(CreditsStateYSides.backFromCredits) {
 			FlxG.sound.playMusic(Paths.music('freakyMenu'));
 			FlxG.sound.music.fadeIn(1);
+			CreditsStateYSides.backFromCredits = false;
 
 			characters.alpha = 0;
 			FlxTween.cancelTweensOf(characters);
@@ -208,8 +209,9 @@ class MainMenuState extends MusicBeatState
 		transition.scale.set(1, 1.2);
 		add(transition);
 
-		if(CreditsStateYSides.backFromCredits)
+		if(CreditsStateYSides.creditsTransition)
 		{
+			CreditsStateYSides.creditsTransition = false;
 			transition.x = -650;
 			selectedSomethin = true;
 			FlxTween.tween(transition, {x: -2100}, 0.5, {ease: FlxEase.quartOut, onComplete: function(twn:FlxTween)
@@ -217,8 +219,6 @@ class MainMenuState extends MusicBeatState
 				selectedSomethin = false;
 				transition.x = FlxG.width;
 			}});
-
-			CreditsStateYSides.backFromCredits = false;
 		}
 
 		//FlxG.camera.follow(camFollow, null, 0.15);
