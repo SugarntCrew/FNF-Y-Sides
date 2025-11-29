@@ -163,11 +163,13 @@ class CreditsStateYSides extends MusicBeatState
 
         if(controls.UI_LEFT_P)
         {
+			FlxG.sound.play(Paths.sound('scrollMenu'));
             changeSelection(-1);
         }
 
         if(controls.UI_RIGHT_P)
         {
+			FlxG.sound.play(Paths.sound('scrollMenu'));
             changeSelection(1);
         }
 
@@ -187,7 +189,6 @@ class CreditsStateYSides extends MusicBeatState
 
     function changeSelection(change:Int = 0)
     {
-		FlxG.sound.play(Paths.sound('scrollMenu'));
         curSelected = FlxMath.wrap(curSelected + change, 0, developers.length - 1);
 
 		if(developers[curSelected][0] == 'Saturn') FlxG.sound.play(Paths.sound('sosoasoas'));
