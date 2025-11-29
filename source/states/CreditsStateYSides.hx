@@ -199,6 +199,10 @@ class CreditsStateYSides extends MusicBeatState
 		currentCharacter.antialiasing = ClientPrefs.data.antialiasing;
 		add(currentCharacter);
 
+		// background color tween
+		FlxTween.cancelTweensOf(bg);
+		FlxTween.color(bg, 0.7, bg.color, developers[curSelected][4], {ease: FlxEase.quartOut});
+
         // reload info
         devInfo.refresh(developers[curSelected][0], developers[curSelected][2], developers[curSelected][3], developers[curSelected][4]);
     }
