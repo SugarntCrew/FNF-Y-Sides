@@ -1678,7 +1678,7 @@ class ChartingState extends MusicBeatState implements PsychUIEventHandler.PsychU
 		if(selectedNotes.length == 1) //Only one note selected
 		{
 			var note:MetaNote = selectedNotes[0];
-			strumTimeStepper.value = note.strumTime;
+			if(strumTimeStepper != null) strumTimeStepper.value = note.strumTime;
 			if(!note.isEvent) //Normal note
 			{
 				if(!note.isEvent)

@@ -472,7 +472,18 @@ class PsychUIInputText extends FlxSpriteGroup
 		if(textObj == null || !textObj.exists) return;
 
 		var textField = textObj.textField;
-		textField.setSelection(caretIndex, caretIndex);
+
+		// add safety checks before calling setSelection
+		if(textField != null && caretIndex >= 0 && caretIndex <= text.length)
+		{
+			try {
+				textField.setSelection(caretIndex, caretIndex);
+			} catch(e:Dynamic) {
+				// catch selection errors that might occur during initialization
+				trace("Selection error: " + e);
+			}
+		}
+
 		_caretTime = 0;
 		if(caret != null && caret.exists)
 		{
@@ -481,7 +492,7 @@ class PsychUIInputText extends FlxSpriteGroup
 			if(caretIndex > 0)
 				caret.x += _boundaries[Std.int(Math.max(0, Math.min(_boundaries.length-1, caretIndex-1)))];
 		}
-		
+
 		if(selection != null && selection.exists)
 		{
 			selection.y = textObj.y + 2;
