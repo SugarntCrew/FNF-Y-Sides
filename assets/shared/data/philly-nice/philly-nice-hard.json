@@ -1,6 +1,6 @@
 {
 	"player1": "bf",
-	"gameOverSound": "fnf_loss_sfx_spooky",
+	"gameOverSound": "fnf_loss_sfx_pico",
 	"gfVersion": "gf",
 	"notes": [
 		{
@@ -1124,8 +1124,9 @@
 	"events": [],
 	"player2": "Pico",
 	"offset": 0,
-	"gameOverChar": "bf-spooky-dead",
-	"gameOverEnd": "gameOverEnd-spooky",
+	"gameOverLoop": "gameOver",
+	"gameOverChar": "bf-dead-pico",
+	"gameOverEnd": "gameOverEnd-pico",
 	"song": "Philly Nice",
 	"needsVoices": true,
 	"stage": "picoBG",

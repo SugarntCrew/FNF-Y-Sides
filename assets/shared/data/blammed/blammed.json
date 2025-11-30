@@ -3161,6 +3161,10 @@
 		"song": "Blammed",
 		"needsVoices": true,
 		"stage": "picoBG",
+		"gameOverSound": "fnf_loss_sfx_pico",
+		"gameOverLoop": "gameOver",
+		"gameOverChar": "bf-dead-pico",
+		"gameOverEnd": "gameOverEnd-pico",
 		"bpm": 140,
 		"speed": 2.7
 	}
