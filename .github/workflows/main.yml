@@ -30,6 +30,9 @@ jobs:
           haxelib --global --quiet update haxelib
           haxelib fixrepo
           haxelib run hmm install --quiet
+      - name: Install VLC
+        run: |
+          sudo apt-get install vlc libvlc-dev libvlccore-dev vlc-bin
       - name: Skip SScript setup mode
         run: echo 'oy9:showMacroty8:loopCosti25y10:includeAllfg' >> ~/settings.cocoa
       - name: Create Version Tag
