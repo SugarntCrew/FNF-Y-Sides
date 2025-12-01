@@ -23,16 +23,21 @@ class GalleryStateMusic extends MusicBeatState
     var musicSongsGrp:FlxTypedGroup<GalleryMusicObject>;
     static var musicSongsArray:Array<String> = [
         'tutorial',
+    ];
+
+    // used to preload
+    static var musicSongsArrayFull:Array<String> = [
+        'tutorial',
         'bopeebo',
         'fresh',
-        'dad-battle',
-        'test',
+        'dadbattle',
         'spookeez',
         'south',
         'monster',
         'pico',
         'philly-nice',
-        'blammed'
+        'blammed',
+        'test',
     ];
 
     public function new()
@@ -40,6 +45,7 @@ class GalleryStateMusic extends MusicBeatState
         super();
 
         preloadMusic();
+        lockedWeeks(#if debug true #else false #end);
 
 		wiggle = new WiggleEffect(2, 4, 0.002, WiggleEffectType.DREAMY);
 		wiggleBg = new WiggleEffect(2, 4, 0.002, WiggleEffectType.DREAMY);
@@ -118,12 +124,55 @@ class GalleryStateMusic extends MusicBeatState
         changeSelect(0, true);
     }
 
+    function lockedWeeks(unlockEverything:Bool = false)
+    {
+        musicSongsArray = ['tutorial'];
+
+        if(unlockEverything)
+        {
+            musicSongsArray.push('bopeebo');
+            musicSongsArray.push('fresh');
+            musicSongsArray.push('dadbattle');
+            musicSongsArray.push('spookeez');
+            musicSongsArray.push('south');
+            musicSongsArray.push('monster');
+            musicSongsArray.push('pico');
+            musicSongsArray.push('philly-nice');
+            musicSongsArray.push('blammed');
+            return;
+        }
+
+        if(StoryMenuState.weekCompleted.exists('week1'))
+        {
+            musicSongsArray.push('bopeebo');
+            musicSongsArray.push('fresh');
+            musicSongsArray.push('dadbattle');
+        }
+
+        if(StoryMenuState.weekCompleted.exists('week2'))
+        {
+            musicSongsArray.push('spookeez');
+            musicSongsArray.push('south');
+            musicSongsArray.push('monster');
+        }
+
+        if(StoryMenuState.weekCompleted.exists('week3'))
+        {
+            musicSongsArray.push('pico');
+            musicSongsArray.push('philly-nice');
+            musicSongsArray.push('blammed');
+        }
+
+        // last song on the playlist
+        musicSongsArray.push('test');
+    }
+
     static var preloadedInstMap:Map<String, FlxSound> = new Map<String, FlxSound>();
     static var preloadedVoicesMap:Map<String, FlxSound> = new Map<String, FlxSound>();
 
     public static function preloadMusic()
     {
-        for(song in musicSongsArray)
+        for(song in musicSongsArrayFull)
         {
             if(!FileSystem.exists('assets/songs/$song/Inst.ogg') || !FileSystem.exists('assets/songs/$song/Voices.ogg')) continue;
 
