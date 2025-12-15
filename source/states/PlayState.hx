@@ -537,13 +537,14 @@ class PlayState extends MusicBeatState
 
 		if(ClientPrefs.data.middleScroll)
 		{
+			timeBar.x = 10;
 			if(ClientPrefs.data.downScroll)
 			{
-				timeBar.y = FlxG.height * 0.025 + 140;
+				timeBar.y = 30;
 			}
 			else
 			{
-				timeBar.y = FlxG.height * 0.805 - 90;
+				timeBar.y = FlxG.height - timeBar.height - 30;
 			}
 		}
 
