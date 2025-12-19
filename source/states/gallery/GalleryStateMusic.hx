@@ -168,25 +168,18 @@ class GalleryStateMusic extends MusicBeatState
     }
 
     static var preloadedInstMap:Map<String, FlxSound> = new Map<String, FlxSound>();
-    static var preloadedVoicesMap:Map<String, FlxSound> = new Map<String, FlxSound>();
 
     public static function preloadMusic()
     {
         for(song in musicSongsArrayFull)
         {
-            if(!FileSystem.exists('assets/songs/$song/Inst.ogg') || !FileSystem.exists('assets/songs/$song/Voices.ogg')) continue;
+            if(!FileSystem.exists('assets/songs/$song/Inst.ogg')) continue;
 
             var embedInst = new FlxSound();
             embedInst.loadEmbedded('assets/songs/$song/Inst.ogg');
             preloadedInstMap.set(song, embedInst);
 
             #if debug trace('Loaded $song (INST)!'); #end
-
-            var embedVoices = new FlxSound();
-            embedVoices.loadEmbedded('assets/songs/$song/Voices.ogg');
-            preloadedVoicesMap.set(song, embedVoices);
-
-            #if debug trace('Loaded $song (VOICES)!'); #end
         }
     }
 
@@ -295,7 +288,6 @@ class GalleryStateMusic extends MusicBeatState
     private static var curSelected:Int = 0;
 
     var inst:FlxSound;
-    var voices:FlxSound;
 
     function changeSelect(change:Int = 0, firstTime:Bool = false)
     {
@@ -309,39 +301,28 @@ class GalleryStateMusic extends MusicBeatState
             if(firstTime) item.snapToPosition();
 		}
 
-        if(FileSystem.exists('assets/songs/${musicSongsArray[curSelected]}/Inst.ogg') || FileSystem.exists('assets/songs/${musicSongsArray[curSelected]}/Voices.ogg'))
+        if(FileSystem.exists('assets/songs/${musicSongsArray[curSelected]}/Inst.ogg'))
         {
             if(FlxG.sound.music != null)
                 FlxG.sound.music.stop();
 
-            if(voices != null)
-                voices.stop();
-
 		    FlxG.sound.list.remove(inst);
-            FlxG.sound.list.remove(voices);
 
             #if debug trace('Changing song to ${musicSongsArray[curSelected]}'); #end
 
             //FlxG.sound.playMusic('assets/songs/${musicSongsArray[curSelected]}/Full.ogg');
             //inst = preloadedInstMap.get(musicSongsArray[curSelected]);
-            //voices = preloadedVoicesMap.get(musicSongsArray[curSelected]);
 
             inst = new FlxSound();
             inst.loadEmbedded('assets/songs/${musicSongsArray[curSelected]}/Inst.ogg');
-
-            voices = new FlxSound();
-            voices.loadEmbedded('assets/songs/${musicSongsArray[curSelected]}/Voices.ogg');
             
 		    FlxG.sound.list.add(inst);
-		    FlxG.sound.list.add(voices);
 
 		    @:privateAccess
             FlxG.sound.playMusic(inst._sound);
-            voices.play();
 
             #if debug
             trace('INST ' + FlxG.sound.music);
-            trace('VOICES ' + voices);
             #end
         }
         else
