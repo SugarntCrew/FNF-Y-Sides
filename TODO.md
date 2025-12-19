@@ -51,7 +51,7 @@
 
 - [x] Spookeez
 - [x] South
-- [ ] Monster
+- [x] Monster
 - [x] Pico
 - [x] Philly Nice
 - [x] Blammed
@@ -106,7 +106,7 @@
 - [x] Dad Battle (SONGCARD)
 - [x] Spookeez (SONGCARD)
 - [x] South (SONGCARD)
-- [ ] Monster (SONGCARD)
+- [x] Monster (SONGCARD)
 - [x] Pico (SONGCARD)
 - [x] Philly Nice (SONGCARD)
 - [x] Blammed (SONGCARD)
