@@ -537,8 +537,8 @@ class PlayState extends MusicBeatState
 		if(SONG.song != 'Monster') monsterClone.alpha = 0;
 		monsterClone.cameras = [camHUD];
 		monsterClone.screenCenter();
-		monsterClone.x += 800;
-		monsterClone.y += 350;
+		monsterClone.x += 680;
+		monsterClone.y += 340;
 		add(monsterClone);
 
 		uiGroup = new FlxSpriteGroup();
@@ -4156,12 +4156,34 @@ class PlayState extends MusicBeatState
 				switch(curStep)
 				{
 					case 64:
-						blackThing.alpha = 0;
+						//blackThing.alpha = 0;
+						uiGroup.visible = false;
+						for(i in 0...strumLineNotes.length)
+						{
+							if(i > 3) break;
+							strumLineNotes.members[i].alpha = 0;
+						}
+
+						FlxTween.tween(blackThing, {alpha: 0}, 3);
 					case 608:
+						uiGroup.visible = true;
+						if(!ClientPrefs.getGameplaySetting('botplay')) botplayTxt.visible = false; //botplay text invisible if not active
+
+						for(i in 0...strumLineNotes.length)
+						{
+							strumLineNotes.members[i].alpha = 1;
+						}
 						blackThingBelow.alpha = 0;
 						monsterClone.alpha = 0;
+					case 1056:
+						FlxTween.tween(blackThingBelow, {alpha: 1}, 1.2);
+						//FlxTween.tween(uiGroup, {alpha: 0}, 1.2);
 					case 1088:
-						vignette.alpha = 0.55;
+						blackThingBelow.alpha = 0;
+						//uiGroup.alpha = 1;
+						vignette.alpha = 0.65;
+					case 1504:
+						FlxTween.tween(blackThing, {alpha: 1}, 1);
 				}
 			case 'Pico':
 				switch(curStep)

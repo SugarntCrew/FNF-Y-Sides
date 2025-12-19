@@ -307,6 +307,12 @@
 			]
 		],
 		[
+			93215.6478151901,
+			[
+				["smooth_camera_zoom", "0.8", "0.9, quartOut"]
+			]
+		],
+		[
 			93401.9832189168,
 			[
 				["lyrics", "Whispered laughter", "32"]
@@ -337,6 +343,12 @@
 			]
 		],
 		[
+			97687.6975046311,
+			[
+				["smooth_camera_zoom", "0.95", "2, quartOut"]
+			]
+		],
+		[
 			98246.7037158112,
 			[
 				["lyrics", "", "32"]
@@ -355,6 +367,12 @@
 			]
 		],
 		[
+			100672.718935019,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
+			]
+		],
+		[
 			100680.028876539,
 			[
 				["smooth_camera_zoom", "0.65", "0.9, quartOut"]
@@ -363,145 +381,241 @@
 		[
 			100690.99378882,
 			[
-				["lyrics", "I crawl inside", "32"]
+				["lyrics", "I crawl inside", "32, D40000"]
 			]
 		],
 		[
 			102072.572736188,
 			[
-				["lyrics", "your broken home", "32"]
+				["lyrics", "your broken home", "32, D40000"]
+			]
+		],
+		[
+			103476.081508118,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
 			]
 		],
 		[
 			103651.520104609,
 			[
-				["lyrics", "Where all your screams", "32"]
+				["lyrics", "Where all your screams", "32, D40000"]
 			]
 		],
 		[
 			104879.590280048,
 			[
-				["lyrics", "will die alone", "32"]
+				["lyrics", "will die alone", "32, D40000"]
+			]
+		],
+		[
+			104883.245250808,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
+			]
+		],
+		[
+			106283.099051978,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
 			]
 		],
 		[
 			106721.695543206,
 			[
-				["lyrics", "I know your face", "32"]
+				["lyrics", "I know your face", "32, D40000"]
 			]
 		],
 		[
 			108037.48501689,
 			[
-				["lyrics", "I know your fear", "32"]
+				["lyrics", "I know your fear", "32, D40000"]
+			]
+		],
+		[
+			109090.116595837,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
 			]
 		],
 		[
 			109528.713087065,
 			[
-				["lyrics", "I taste your panic", "32"]
+				["lyrics", "I taste your panic", "32, D40000"]
 			]
 		],
 		[
 			110493.625367767,
 			[
-				["lyrics", "when I'm near", "32"]
+				["lyrics", "when I'm near", "32, D40000"]
+			]
+		],
+		[
+			110497.280338527,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
+			]
+		],
+		[
+			111897.134139697,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
 			]
 		],
 		[
 			112335.730630925,
 			[
-				["lyrics", "I am the monster", "32"]
+				["lyrics", "I am the monster", "32, D40000"]
 			]
 		],
 		[
 			113739.239402855,
 			[
-				["lyrics", "in the dark", "32"]
+				["lyrics", "in the dark", "32, D40000"]
+			]
+		],
+		[
+			114704.151683557,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
 			]
 		],
 		[
 			115055.028876539,
 			[
-				["lyrics", "I leave my shadow,", "32"]
+				["lyrics", "I leave my shadow,", "32, D40000"]
 			]
 		],
 		[
 			116107.660455487,
 			[
-				["lyrics", "leave my mark", "32"]
+				["lyrics", "leave my mark", "32, D40000"]
+			]
+		],
+		[
+			116111.315426247,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
+			]
+		],
+		[
+			117511.169227416,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
 			]
 		],
 		[
 			117949.765718644,
 			[
-				["lyrics", "Your friends all", "32"]
+				["lyrics", "Your friends all", "32, D40000"]
 			]
 		],
 		[
 			118914.677999346,
 			[
-				["lyrics", "thought that I was fake", "32"]
+				["lyrics", "thought that I was fake", "32, D40000"]
+			]
+		],
+		[
+			120318.186771276,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
 			]
 		],
 		[
 			120581.344666013,
 			[
-				["lyrics", "Now hear them cry", "32"]
+				["lyrics", "Now hear them cry", "32, D40000"]
 			]
 		],
 		[
 			121721.695543206,
 			[
-				["lyrics", "now hear them break", "32"]
+				["lyrics", "now hear them break", "32, D40000"]
+			]
+		],
+		[
+			123125.204315136,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
 			]
 		],
 		[
 			123563.800806364,
 			[
-				["lyrics", "", "32"]
+				["lyrics", "", "32, D40000"]
+			]
+		],
+		[
+			125932.221858995,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
+			]
+		],
+		[
+			127335.730630925,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
+			]
+		],
+		[
+			128739.239402855,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
+			]
+		],
+		[
+			131546.256946715,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
+			]
+		],
+		[
+			137160.292034434,
+			[
+				["Add Camera Zoom", "0.03", "0.03"]
 			]
 		],
 		[
 			140230.467473031,
 			[
-				["lyrics", "HA!", "32"]
+				["lyrics", "HA!", "32, D40000"]
 			]
 		],
 		[
 			140493.625367767,
 			[
-				["lyrics", "HA! HAA!", "32"]
+				["lyrics", "HA! HAA!", "32, D40000"]
 			]
 		],
 		[
 			140807.221858995,
 			[
-				["lyrics", "HA! HAA! HAA!", "32"]
+				["lyrics", "HA! HAA! HAA!", "32, D40000"]
 			]
 		],
 		[
 			141107.660455487,
 			[
-				["lyrics", "HA! HAA! HAA! HAA!", "32"]
+				["lyrics", "HA! HAA! HAA! HAA!", "32, D40000"]
 			]
 		],
 		[
 			141458.537648469,
 			[
-				["lyrics", "HAAA!!", "32"]
+				["lyrics", "HAAA!!", "32, D40000"]
 			]
 		],
 		[
 			141934.414841452,
 			[
-				["lyrics", "HAAA!! HAAA!!", "32"]
+				["lyrics", "HAAA!! HAAA!!", "32, D40000"]
 			]
 		],
 		[
 			142774.327122153,
 			[
-				["lyrics", "", "32"]
+				["lyrics", "", "32, D40000"]
 			]
 		]
 	],

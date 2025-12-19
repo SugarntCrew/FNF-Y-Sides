@@ -26,6 +26,7 @@ class HalloweenCreepyStage extends BaseStage
 
 	}
 
+	var chromaticAberration:ChromaticAberration;
 	override function createPost()
 	{
 
@@ -43,10 +44,10 @@ class HalloweenCreepyStage extends BaseStage
 		var shaderFilter = new ShaderFilter(bloom);
 		FlxG.camera.filters = [shaderFilter];
 
-		var chromaticAberration = new ChromaticAberration();
-		chromaticAberration.rOffset.value = [0.002];
+		chromaticAberration = new ChromaticAberration();
+		chromaticAberration.rOffset.value = [0.001];
 		chromaticAberration.gOffset.value = [0.0];
-		chromaticAberration.bOffset.value = [-0.002];
+		chromaticAberration.bOffset.value = [-0.001];
 
 		var shaderFilter2 = new ShaderFilter(chromaticAberration);
 		FlxG.camera.filters.push(shaderFilter2);
@@ -111,6 +112,16 @@ class HalloweenCreepyStage extends BaseStage
 					rimPlayer3.updateFrameInfo(game.player3.frame);
 				}
 			};
+		}
+	}
+
+	override function stepHit()
+	{
+		if(curStep == 1088)
+		{
+			chromaticAberration.rOffset.value = [0.002];
+			chromaticAberration.gOffset.value = [0.0];
+			chromaticAberration.bOffset.value = [-0.002];
 		}
 	}
 }
