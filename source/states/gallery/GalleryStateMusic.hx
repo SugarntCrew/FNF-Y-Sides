@@ -30,7 +30,7 @@ class GalleryStateMusic extends MusicBeatState
         'tutorial',
         'bopeebo',
         'fresh',
-        'dadbattle',
+        'dad-battle',
         'spookeez',
         'south',
         'monster',
@@ -132,7 +132,7 @@ class GalleryStateMusic extends MusicBeatState
         {
             musicSongsArray.push('bopeebo');
             musicSongsArray.push('fresh');
-            musicSongsArray.push('dadbattle');
+            musicSongsArray.push('dad-battle');
             musicSongsArray.push('spookeez');
             musicSongsArray.push('south');
             musicSongsArray.push('monster');
@@ -146,7 +146,7 @@ class GalleryStateMusic extends MusicBeatState
         {
             musicSongsArray.push('bopeebo');
             musicSongsArray.push('fresh');
-            musicSongsArray.push('dadbattle');
+            musicSongsArray.push('dad-battle');
         }
 
         if(StoryMenuState.weekCompleted.exists('week2'))
@@ -332,20 +332,17 @@ class GalleryStateMusic extends MusicBeatState
             voices = new FlxSound();
             voices.loadEmbedded('assets/songs/${musicSongsArray[curSelected]}/Voices.ogg');
             
-            #if debug
-            trace('INST MAP: ' + preloadedInstMap);
-            trace('VOICES MAP: ' + preloadedVoicesMap);
-
-            trace('INST ' + inst);
-            trace('VOICES ' + voices);
-            #end
-            
 		    FlxG.sound.list.add(inst);
 		    FlxG.sound.list.add(voices);
 
 		    @:privateAccess
             FlxG.sound.playMusic(inst._sound);
             voices.play();
+
+            #if debug
+            trace('INST ' + FlxG.sound.music);
+            trace('VOICES ' + voices);
+            #end
         }
         else
         {
